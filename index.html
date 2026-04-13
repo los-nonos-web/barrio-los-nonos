@@ -246,22 +246,29 @@ footer span{color:var(--gold);}
   <a href="https://wa.me/543512341468?text=Hola!%20Vi%20los%20lotes%20del%20Barrio%20Los%20Nonos" class="nav-phone" target="_blank">💬 351 234-1468</a>
 </nav>
 
-<!-- HERO -->
+<!-- HERO - EXPLORAR MÁS ABAJO -->
 <section class="hero">
   <div class="hero-badge">Barrio Los Nonos · Colonia Tirolesa · Córdoba</div>
   <h1>Tu tierra,<br>tu hogar.</h1>
   <p class="hero-sub">Lotes en venta · Escritura inmediata</p>
+  
   <div class="hero-stats">
     <div><span class="stat-num">7</span><span class="stat-label">Lotes disponibles</span></div>
     <div><span class="stat-num">687m²</span><span class="stat-label">Desde</span></div>
     <div><span class="stat-num">27km</span><span class="stat-label">De Córdoba</span></div>
     <div><span class="stat-num">3</span><span class="stat-label">Formas de pagar</span></div>
   </div>
+
   <div class="hero-cta">
     <a href="#flyers" class="btn-gold">Ver los lotes</a>
     <a href="#financiamiento" class="btn-out">Cómo financiarlo</a>
   </div>
-  <div class="scroll-ind"><span>Explorar</span><div class="scroll-line"></div></div>
+
+  <!-- Scroll indicator más abajo -->
+  <div class="scroll-ind" style="position:absolute; bottom:5px; left:50%; transform:translateX(50%);">
+    <span>Explorar</span>
+    <div class="scroll-line"></div>
+  </div>
 </section>
 
 <!-- FLYER CAROUSEL -->
@@ -461,83 +468,149 @@ footer span{color:var(--gold);}
   </div>
 </section>
 
-<!-- FINANCIAMIENTO - VERSIÓN MEJORADA -->
+<!-- FINANCIAMIENTO - CALCULADORA CORREGIDA + WHATSAPP -->
 <section class="fin-sec" id="financiamiento">
   <div class="inn">
     <span class="section-tag">Financiación Propia</span>
-    <h2 class="section-title">Calculá tu cuota en segundos</h2>
-    <p class="section-desc">50% de entrada al firmar el boleto + el saldo en cuotas fijas en dólares. Sin banco, sin trámites complicados. Todo por escribano.</p>
+    <h2 class="section-title">Calculá tu cuota fácilmente</h2>
+    <p class="section-desc">50% de entrada al firmar el boleto + saldo en cuotas fijas en dólares. Simple y sin banco.</p>
 
-    <div class="calculator-card">
-      <h3 style="margin-bottom:28px;">Simulador de Financiación Directa</h3>
+    <div class="calculator-card" style="background:var(--dark3); border:1px solid var(--gold); border-radius:20px; padding:32px 24px; max-width:640px; margin:0 auto;">
       
-      <div class="calc-grid">
+      <h3 style="text-align:center; margin-bottom:24px; color:var(--gold);">Simulador de Cuotas</h3>
+      
+      <div style="display:grid; gap:28px;">
+
         <!-- Selección de lote -->
         <div>
-          <label class="calc-label">Seleccioná el lote</label>
-          <select id="lotSelect" class="calc-input" onchange="calculateFinancing()">
+          <label class="calc-label">Seleccioná tu lote</label>
+          <select id="lotSelect" class="calc-input" onchange="calculateFinancing()" 
+                  style="width:100%; padding:14px; font-size:16px; border-radius:12px; background:var(--dark4); color:#fff;">
             <option value="25000">Lote chico 687,20 m² — USD 25.000</option>
             <option value="28000" selected>Lote grande 773,25 m² — USD 28.000</option>
           </select>
+        </div>
 
-          <label class="calc-label" style="margin-top:24px;">Cantidad de cuotas</label>
-          <div class="range-container">
-            <input type="range" id="cuotasRange" min="6" max="18" value="12" step="1" oninput="calculateFinancing()">
-            <span id="cuotasVal" style="font-family:'Playfair Display',serif; font-size:26px; color:var(--gold); min-width:80px; text-align:right;">12</span>
+        <!-- Slider -->
+        <div>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+            <label class="calc-label">Cantidad de cuotas</label>
+            <span id="cuotasVal" style="font-family:'Playfair Display',serif; font-size:26px; font-weight:700; color:var(--gold);">12</span>
           </div>
-          <div style="text-align:center; margin-top:4px; font-size:13px; color:rgba(255,255,255,.5);">
-            Entre 6 y 18 cuotas fijas en USD
+          <input type="range" id="cuotasRange" min="6" max="18" value="12" step="1" 
+                 oninput="calculateFinancing()" 
+                 style="width:100%; accent-color:var(--gold);">
+          <div style="display:flex; justify-content:space-between; font-size:11px; color:rgba(255,255,255,.5); margin-top:4px;">
+            <span>6</span><span>18</span>
           </div>
         </div>
 
         <!-- Resultado -->
-        <div class="calc-result" id="calcResult" style="background:var(--dark4); border:1px solid var(--gold);">
-          <p style="font-size:14px; color:rgba(255,255,255,.7);">Entrada (al firmar boleto)</p>
-          <p style="font-size:28px; font-weight:700; color:var(--gold);" id="entradaShow">USD 14.000</p>
+        <div style="background:var(--dark4); border-radius:16px; padding:24px; text-align:center; border:1px solid rgba(201,168,76,.25);">
+          <p style="color:rgba(255,255,255,.7); font-size:14px;">Entrada (50%)</p>
+          <p id="entradaShow" style="font-size:28px; font-weight:700; color:var(--gold); margin:4px 0 16px 0;">USD 14.000</p>
 
-          <hr style="border:none; border-top:1px solid rgba(255,255,255,.1); margin:20px 0;">
+          <div style="height:1px; background:rgba(255,255,255,.12); margin:16px 0;"></div>
 
-          <p style="font-size:14px; color:rgba(255,255,255,.7);">Saldo en <span id="cuotasFinal" style="color:var(--gold); font-weight:600;">12</span> cuotas fijas</p>
-          <p style="font-size:34px; font-weight:900; line-height:1; margin:8px 0;" id="cuotaShow">USD 1.167</p>
-          <p style="font-size:13px; color:rgba(255,255,255,.5);">por mes</p>
+          <p style="color:rgba(255,255,255,.7); font-size:14px;">Cuota mensual fija</p>
+          <p id="cuotaShow" style="font-size:38px; font-weight:900; color:var(--gold); margin:6px 0;">USD 1.167</p>
+          <p id="cuotasFinalText" style="font-size:14px; color:rgba(255,255,255,.6);">en 12 cuotas</p>
 
-          <div style="margin-top:28px; padding:16px; background:rgba(201,168,76,.08); border-radius:10px; font-size:13px;">
-            <strong>Total a pagar:</strong> USD 28.000<br>
-            <span id="resumenFinal" style="color:rgba(255,255,255,.8);">50% entrada + 12 cuotas de USD 1.167</span>
+          <!-- Botón para desplegar cuotas -->
+          <button onclick="toggleCuotasList()" id="toggleBtn"
+                  style="margin-top:20px; width:100%; padding:14px; background:rgba(201,168,76,.15); color:var(--gold); border:1px solid var(--gold); border-radius:12px; font-weight:600; cursor:pointer;">
+            Ver detalle de todas las cuotas ▼
+          </button>
+
+          <!-- Lista desplegable -->
+          <div id="cuotasList" style="display:none; margin-top:18px; text-align:left; font-size:14px; background:rgba(0,0,0,.3); padding:18px; border-radius:12px; line-height:1.8;">
           </div>
+
+          <!-- Botón WhatsApp -->
+          <button onclick="enviarConsultaWhatsApp()" 
+                  style="margin-top:24px; width:100%; padding:16px; background:var(--gold); color:#0D0D0D; border:none; border-radius:12px; font-size:16px; font-weight:700; cursor:pointer;">
+            Consultar
+          </button>
         </div>
       </div>
 
-      <p style="text-align:center; margin-top:32px; font-size:13px; color:rgba(255,255,255,.55);">
-        ✅ Operación simple • A través de escribano público • Escritura al finalizar las cuotas
+      <p style="text-align:center; margin-top:28px; font-size:13px; color:rgba(255,255,255,.55);">
+        Operación a través de escribano • Escritura al finalizar las cuotas
       </p>
     </div>
 
-    <!-- Comparación bancaria (queda igual que antes) -->
-    <h3 style="text-align:center; margin:50px 0 24px; font-family:'Playfair Display',serif; color:var(--gold);">Otras opciones bancarias (comparación)</h3>
+    <!-- Comparación Bancaria -->
+    <h3 style="text-align:center; margin:52px 0 22px; font-family:'Playfair Display',serif; color:var(--gold);">Otras opciones bancarias</h3>
     <div class="bank-comparison">
       <div class="bank-card">
         <h4>Banco de Córdoba (Bancor)</h4>
-        <p style="font-size:13px;color:rgba(255,255,255,.7);">TNA 4,90% · Hasta 100% financiado · Hasta 20 años</p>
+        <p style="font-size:13px; color:rgba(255,255,255,.7);">TNA 4,90% — Hasta 100% financiado — Hasta 20 años</p>
         <a href="https://www.bancor.com.ar/personas/creditos/hipotecarios" target="_blank" class="bank-link">Ver condiciones oficiales →</a>
       </div>
       <div class="bank-card">
         <h4>Banco Nación</h4>
-        <p style="font-size:13px;color:rgba(255,255,255,.7);">TNA 6% + UVA · Hasta 30 años</p>
+        <p style="font-size:13px; color:rgba(255,255,255,.7);">TNA 6% + UVA — Hasta 30 años de plazo</p>
         <a href="https://www.bna.com.ar/Personas/CreditosHipotecarios" target="_blank" class="bank-link">Ver condiciones oficiales →</a>
       </div>
       <div class="bank-card">
         <h4>Banco Galicia</h4>
-        <p style="font-size:13px;color:rgba(255,255,255,.7);">TNA UVA + 5,5% · Sin tope de monto</p>
+        <p style="font-size:13px; color:rgba(255,255,255,.7);">TNA UVA + 5,5% — Sin tope de monto</p>
         <a href="https://www.galicia.com.ar/hipotecarios" target="_blank" class="bank-link">Ver condiciones oficiales →</a>
       </div>
       <div class="bank-card">
         <h4>BBVA y Macro</h4>
-        <p style="font-size:13px;color:rgba(255,255,255,.7);">Tasas desde 7,5% y líneas en USD</p>
+        <p style="font-size:13px; color:rgba(255,255,255,.7);">Desde 7,5% para monotributistas y líneas en USD</p>
         <a href="https://www.bbva.com.ar/personas/creditos/hipotecario" target="_blank" class="bank-link">Ver BBVA →</a>
         <a href="https://www.macro.com.ar/personas/creditos/hipotecarios" target="_blank" class="bank-link" style="margin-left:12px;">Ver Macro →</a>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- NUEVA SECCIÓN: CONOCÉ EL BARRIO (CON MAPA DESPLEGABLE) -->
+<section class="col-sec" style="background:var(--dark2); padding:100px 20px;">
+  <div class="inn" style="max-width:1100px; margin:0 auto;">
+    <span class="section-tag">Barrio consolidado</span>
+    <h2 class="section-title">Un barrio que ya vive.<br>Estos son los últimos lotes.</h2>
+    
+    <p class="section-desc" style="max-width:720px; margin:0 auto 40px; text-align:center;">
+      El Barrio Los Nonos se encuentra en plena zona consolidada de Colonia Tirolesa. 
+      Ya hay numerosas casas terminadas y familias viviendo, calles con cordón cuneta, luz y agua por la puerta de cada lote. 
+      Es un barrio tranquilo, seguro y en crecimiento, ideal para construir tu hogar definitivo.
+    </p>
+
+    <!-- Botón para desplegar el mapa -->
+    <div style="text-align:center; margin-bottom:30px;">
+      <button onclick="toggleBarrioMap()" id="mapToggleBtn"
+              style="padding:16px 32px; background:rgba(201,168,76,.15); color:var(--gold); border:1px solid var(--gold); border-radius:12px; font-size:15px; font-weight:600; cursor:pointer;">
+        Ver vista satelital actual del barrio ▼
+      </button>
+    </div>
+
+    <!-- Contenido desplegable del mapa -->
+    <div id="barrioMapContainer" style="display:none; margin-top:20px;">
+      <div style="text-align:center;">
+        <img src="barrio-sat.jpg" alt="Vista aérea real - Barrio Los Nonos 2026" 
+             style="width:100%; max-width:920px; border-radius:16px; box-shadow:0 15px 40px rgba(0,0,0,.6);">
+        
+        <p style="margin-top:14px; font-size:13px; color:rgba(255,255,255,.5);">
+          Vista satelital actual (abril 2026) – Barrio Los Nonos, Colonia Tirolesa
+        </p>
+
+        <!-- Google Maps -->
+        <a href="https://www.google.com/maps/search/?api=1&query=-31.246562,-64.069272" 
+           target="_blank" 
+           style="display:inline-flex; align-items:center; gap:10px; margin-top:20px; background:var(--dark4); padding:16px 32px; border-radius:12px; color:var(--gold); text-decoration:none; font-weight:600; border:1px solid rgba(201,168,76,.3);">
+          <span style="font-size:22px;"></span>
+          Abrir ubicación exacta en Google Maps
+        </a>
+        
+        <p style="margin-top:12px; font-size:12px; color:rgba(255,255,255,.45);">
+          Coordenadas: -31.246562, -64.069272
+        </p>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -627,6 +700,7 @@ footer span{color:var(--gold);}
   </div>
 </section>
 
+
 <!-- LOTES -->
 <section class="lotes-sec" id="disponibles">
   <span class="section-tag">Stock disponible</span>
@@ -690,7 +764,6 @@ footer span{color:var(--gold);}
   <h2 class="section-title">¿Te quedaste<br>con alguno en mente?</h2>
   <p class="section-desc" style="margin:0 auto;">Consultá sin compromiso. Respondemos rápido y coordinamos visita.</p>
   <div class="contact-card">
-    <div class="ca">Valeria · Asesora inmobiliaria</div>
     <a href="tel:3512341468" class="cp">351 234-1468</a>
     <div class="cl">Barrio Los Nonos · Colonia Tirolesa, Córdoba</div>
     <div class="chips">
@@ -761,20 +834,106 @@ function goToLot(n){
   document.getElementById('mapa').scrollIntoView({behavior:'smooth'});
 }
 
-// FINANCING CALCULATOR
-function calculateFinancing(){
+// Variables globales
+let simulacionActual = {};
+
+// Función principal de cálculo
+function calculateFinancing() {
   const precio = parseFloat(document.getElementById('lotSelect').value);
   const cuotas = parseInt(document.getElementById('cuotasRange').value);
+  
   const entrada = precio * 0.5;
   const saldo = precio * 0.5;
   const cuota = saldo / cuotas;
 
-  document.getElementById('cuotasVal').textContent = cuotas + ' cuotas';
-  document.getElementById('entradaShow').textContent = 'USD ' + entrada.toLocaleString();
-  document.getElementById('saldoShow').textContent = 'USD ' + saldo.toLocaleString();
-  document.getElementById('cuotaShow').textContent = 'USD ' + cuota.toFixed(0);
+  // Actualizar interfaz
+  document.getElementById('cuotasVal').textContent = cuotas;
+  document.getElementById('entradaShow').textContent = 'USD ' + entrada.toLocaleString('es-AR');
+  document.getElementById('cuotaShow').textContent = 'USD ' + Math.round(cuota).toLocaleString('es-AR');
+  document.getElementById('cuotasFinalText').textContent = `en ${cuotas} cuotas`;
+
+  // Guardar datos para WhatsApp y lista de cuotas
+  simulacionActual = {
+    lote: document.getElementById('lotSelect').options[document.getElementById('lotSelect').selectedIndex].text,
+    precioTotal: precio,
+    entrada: entrada,
+    cuotas: cuotas,
+    cuotaMensual: Math.round(cuota)
+  };
 }
-window.onload = calculateFinancing; // inicializar calculadora
+
+// Toggle de la lista de cuotas (CORREGIDO)
+// ==================== TOGGLE LISTA DE CUOTAS (CORREGIDO) ====================
+function toggleCuotasList() {
+  const list = document.getElementById('cuotasList');
+  const btn = document.getElementById('toggleBtn');
+
+  if (!simulacionActual.cuotas) {
+    alert("Primero selecciona un lote y mueve el slider de cuotas.");
+    return;
+  }
+
+  if (list.style.display === 'none' || list.style.display === '') {
+    let html = '';
+    for (let i = 1; i <= simulacionActual.cuotas; i++) {
+      html += `<div>Cuota ${i}: <strong>USD ${simulacionActual.cuotaMensual.toLocaleString('es-AR')}</strong></div>`;
+    }
+    list.innerHTML = html;
+    list.style.display = 'block';
+    btn.textContent = 'Ocultar detalle de cuotas ▲';
+  } else {
+    list.style.display = 'none';
+    btn.textContent = 'Ver detalle de todas las cuotas ▼';
+  }
+}
+
+// Enviar consulta por WhatsApp
+function enviarConsultaWhatsApp() {
+  if (!simulacionActual.lote) {
+    alert("Primero selecciona un lote y cantidad de cuotas.");
+    return;
+  }
+
+  const mensaje = `Hola Valeria!%0A%0A` +
+    `Vi el simulador del Barrio Los Nonos y me interesa esta opción:%0A%0A` +
+    `• Lote: ${simulacionActual.lote}%0A` +
+    `• Precio total: USD ${simulacionActual.precioTotal.toLocaleString('es-AR')}%0A` +
+    `• Entrada (50%): USD ${simulacionActual.entrada.toLocaleString('es-AR')}%0A` +
+    `• ${simulacionActual.cuotas} cuotas de USD ${simulacionActual.cuotaMensual.toLocaleString('es-AR')}%0A%0A` +
+    `Quiero más información y coordinar una visita. Gracias!`;
+
+  window.open(`https://wa.me/543512341468?text=${mensaje}`, '_blank');
+}
+
+// Inicializar al cargar la página
+window.addEventListener('load', calculateFinancing);
+
+// Toggle del mapa satelital del barrio
+function toggleBarrioMap() {
+  const container = document.getElementById('barrioMapContainer');
+  const btn = document.getElementById('mapToggleBtn');
+  
+  if (container.style.display === 'none' || container.style.display === '') {
+    container.style.display = 'block';
+    btn.innerHTML = 'Ocultar vista satelital ▲';
+  } else {
+    container.style.display = 'none';
+    btn.innerHTML = 'Ver vista satelital actual del barrio ▼';
+  }
+}
+
+
+
+// Inicializar
+window.addEventListener('load', () => {
+  calculateFinancing();
+});
+
+// Inicializar al cargar
+window.addEventListener('load', calculateFinancing);
+
+// Inicializar calculadora cuando carga la página
+window.addEventListener('load', calculateFinancing);
 
 // CANVAS (sin emojis en textos)
 const canvas=document.getElementById('houseCanvas');const ctx=canvas.getContext('2d');
