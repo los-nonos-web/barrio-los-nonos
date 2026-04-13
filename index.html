@@ -461,88 +461,81 @@ footer span{color:var(--gold);}
   </div>
 </section>
 
-<!-- FINANCING -->
+<!-- FINANCIAMIENTO - VERSIÓN MEJORADA -->
 <section class="fin-sec" id="financiamiento">
   <div class="inn">
-    <span class="section-tag">Opciones de financiamiento</span>
-    <h2 class="section-title">Tu lote, con la forma de pago que más te conviene.</h2>
-    <p class="section-desc">Tres caminos claros. Sin complicaciones. La financiación propia es la más rápida y flexible.</p>
+    <span class="section-tag">Financiación Propia</span>
+    <h2 class="section-title">Calculá tu cuota en segundos</h2>
+    <p class="section-desc">50% de entrada al firmar el boleto + el saldo en cuotas fijas en dólares. Sin banco, sin trámites complicados. Todo por escribano.</p>
 
-    <!-- CALCULADORA FINANCIACIÓN PROPIA -->
     <div class="calculator-card">
-      <h3>Calculadora — Financiación directa del dueño</h3>
-      <p style="color:rgba(255,255,255,.6);margin-bottom:24px;">50% al firmar el boleto + saldo en hasta 18 cuotas fijas en USD. A través de escribano.</p>
+      <h3 style="margin-bottom:28px;">Simulador de Financiación Directa</h3>
       
       <div class="calc-grid">
+        <!-- Selección de lote -->
         <div>
-          <label class="calc-label">Seleccioná tu lote</label>
+          <label class="calc-label">Seleccioná el lote</label>
           <select id="lotSelect" class="calc-input" onchange="calculateFinancing()">
-            <option value="25000">Lote chico (687,20 m²) — USD 25.000</option>
-            <option value="28000" selected>Lote grande (773,25 m²) — USD 28.000</option>
+            <option value="25000">Lote chico 687,20 m² — USD 25.000</option>
+            <option value="28000" selected>Lote grande 773,25 m² — USD 28.000</option>
           </select>
 
-          <label class="calc-label">Cantidad de cuotas (máximo 18)</label>
+          <label class="calc-label" style="margin-top:24px;">Cantidad de cuotas</label>
           <div class="range-container">
             <input type="range" id="cuotasRange" min="6" max="18" value="12" step="1" oninput="calculateFinancing()">
-            <span id="cuotasVal" style="font-family:'Playfair Display',serif;font-size:22px;min-width:60px;text-align:right;">12 cuotas</span>
+            <span id="cuotasVal" style="font-family:'Playfair Display',serif; font-size:26px; color:var(--gold); min-width:80px; text-align:right;">12</span>
+          </div>
+          <div style="text-align:center; margin-top:4px; font-size:13px; color:rgba(255,255,255,.5);">
+            Entre 6 y 18 cuotas fijas en USD
           </div>
         </div>
 
-        <div class="calc-result" id="calcResult">
-          <p>Entrada (50% al boleto)<br><strong id="entradaShow">USD 14.000</strong></p>
-          <p>Saldo a financiar<br><strong id="saldoShow">USD 14.000</strong></p>
-          <p>Cuota mensual fija en USD<br><strong id="cuotaShow" style="font-size:32px;">USD 1.167</strong></p>
-          <p style="font-size:11px;color:rgba(255,255,255,.4);margin-top:20px;">Operación simple · Sin banco · Escritura al finalizar</p>
+        <!-- Resultado -->
+        <div class="calc-result" id="calcResult" style="background:var(--dark4); border:1px solid var(--gold);">
+          <p style="font-size:14px; color:rgba(255,255,255,.7);">Entrada (al firmar boleto)</p>
+          <p style="font-size:28px; font-weight:700; color:var(--gold);" id="entradaShow">USD 14.000</p>
+
+          <hr style="border:none; border-top:1px solid rgba(255,255,255,.1); margin:20px 0;">
+
+          <p style="font-size:14px; color:rgba(255,255,255,.7);">Saldo en <span id="cuotasFinal" style="color:var(--gold); font-weight:600;">12</span> cuotas fijas</p>
+          <p style="font-size:34px; font-weight:900; line-height:1; margin:8px 0;" id="cuotaShow">USD 1.167</p>
+          <p style="font-size:13px; color:rgba(255,255,255,.5);">por mes</p>
+
+          <div style="margin-top:28px; padding:16px; background:rgba(201,168,76,.08); border-radius:10px; font-size:13px;">
+            <strong>Total a pagar:</strong> USD 28.000<br>
+            <span id="resumenFinal" style="color:rgba(255,255,255,.8);">50% entrada + 12 cuotas de USD 1.167</span>
+          </div>
         </div>
       </div>
+
+      <p style="text-align:center; margin-top:32px; font-size:13px; color:rgba(255,255,255,.55);">
+        ✅ Operación simple • A través de escribano público • Escritura al finalizar las cuotas
+      </p>
     </div>
 
-    <!-- COMPARACIÓN BANCARIA -->
-    <h3 style="text-align:center;margin:40px 0 20px;font-family:'Playfair Display',serif;color:var(--gold);">Otras opciones bancarias (comparación)</h3>
+    <!-- Comparación bancaria (queda igual que antes) -->
+    <h3 style="text-align:center; margin:50px 0 24px; font-family:'Playfair Display',serif; color:var(--gold);">Otras opciones bancarias (comparación)</h3>
     <div class="bank-comparison">
-      <!-- Banco Córdoba -->
       <div class="bank-card">
         <h4>Banco de Córdoba (Bancor)</h4>
         <p style="font-size:13px;color:rgba(255,255,255,.7);">TNA 4,90% · Hasta 100% financiado · Hasta 20 años</p>
-        <ul style="font-size:13px;line-height:1.6;margin:14px 0;padding-left:18px;color:rgba(255,255,255,.6);">
-          <li>La tasa más baja del mercado cordobés</li>
-          <li>Trámite 100% online (APPTO)</li>
-          <li>Ingresos desde $470.000 familiares</li>
-        </ul>
         <a href="https://www.bancor.com.ar/personas/creditos/hipotecarios" target="_blank" class="bank-link">Ver condiciones oficiales →</a>
       </div>
-
-      <!-- Banco Nación -->
       <div class="bank-card">
         <h4>Banco Nación</h4>
         <p style="font-size:13px;color:rgba(255,255,255,.7);">TNA 6% + UVA · Hasta 30 años</p>
         <a href="https://www.bna.com.ar/Personas/CreditosHipotecarios" target="_blank" class="bank-link">Ver condiciones oficiales →</a>
       </div>
-
-      <!-- Banco Galicia -->
       <div class="bank-card">
         <h4>Banco Galicia</h4>
         <p style="font-size:13px;color:rgba(255,255,255,.7);">TNA UVA + 5,5% · Sin tope de monto</p>
         <a href="https://www.galicia.com.ar/hipotecarios" target="_blank" class="bank-link">Ver condiciones oficiales →</a>
       </div>
-
-      <!-- BBVA / Macro -->
       <div class="bank-card">
         <h4>BBVA y Macro</h4>
-        <p style="font-size:13px;color:rgba(255,255,255,.7);">Tasas desde 7,5% (monotributistas) y líneas en USD</p>
+        <p style="font-size:13px;color:rgba(255,255,255,.7);">Tasas desde 7,5% y líneas en USD</p>
         <a href="https://www.bbva.com.ar/personas/creditos/hipotecario" target="_blank" class="bank-link">Ver BBVA →</a>
         <a href="https://www.macro.com.ar/personas/creditos/hipotecarios" target="_blank" class="bank-link" style="margin-left:12px;">Ver Macro →</a>
-      </div>
-    </div>
-
-    <div class="own-box" style="margin-top:40px;">
-      <h3>Ejemplo real — Financiación directa del dueño</h3>
-      <p>Para un lote de <strong style="color:var(--gold)">USD 25.000</strong>, la operación más simple funciona así:</p>
-      <div class="eg-grid">
-        <div class="eg-card"><div class="eg-lbl">Al firmar el boleto</div><div class="eg-val">USD 12.500</div><div class="eg-sub">50% de entrada</div></div>
-        <div class="eg-card"><div class="eg-lbl">En 12 cuotas</div><div class="eg-val">USD 1.042/mes</div><div class="eg-sub">Cuota fija en dólares</div></div>
-        <div class="eg-card"><div class="eg-lbl">En 18 cuotas</div><div class="eg-val">USD 694/mes</div><div class="eg-sub">Cuota fija en dólares</div></div>
-        <div class="eg-card"><div class="eg-lbl">Escritura</div><div class="eg-val">Al cancelar</div><div class="eg-sub">Sin esperas bancarias</div></div>
       </div>
     </div>
   </div>
