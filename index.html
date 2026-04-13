@@ -391,69 +391,218 @@ footer span{color:var(--gold);}
   </div>
 </section>
 
-<!-- MAP -->
-<section class="map-section" id="mapa">
-  <span class="section-tag">Visualizador interactivo</span>
-  <h2 class="section-title">Elegí tu lote.<br>Visualizá tu casa.</h2>
-  <p class="section-desc" style="margin:0 auto 48px;">Seleccioná un lote y mirá cómo quedaría tu construcción.</p>
-  <div class="map-wrapper">
-    <div class="aerial-c">
-      <div class="aerial-lbl">Vista satelital real · Barrio Los Nonos (2026)</div>
-      <!-- === AQUÍ VA LA IMAGEN SATELITAL REAL QUE ME PASASTE === -->
-      <!-- Guarda la primera imagen que enviaste como "mapa-sat.jpg" en la misma carpeta que este HTML -->
-      <img src="mapa-sat.jpg" class="plot-map" alt="Vista aérea real - Barrio Los Nonos" style="display:block;">
-      
-      <div class="aerial-lbl">Plano de lotes · Seleccioná uno</div>
-      <div style="width:100%;max-width:500px;margin:0 auto;">
-        <svg class="plot-map" viewBox="0 0 420 600" xmlns="http://www.w3.org/2000/svg">
-          <rect width="420" height="600" fill="#1C1408"/>
-          <rect x="0" y="0" width="420" height="40" fill="#2A2520"/>
-          <text x="210" y="26" text-anchor="middle" fill="rgba(255,255,255,0.28)" font-family="DM Sans" font-size="11" letter-spacing="3">CALLE PÚBLICA</text>
-          <rect x="0" y="0" width="30" height="600" fill="#2A2520"/>
-          <rect x="390" y="0" width="30" height="600" fill="#2A2520"/>
-          <rect x="0" y="560" width="420" height="40" fill="#2A2520"/>
-          <text x="210" y="582" text-anchor="middle" fill="rgba(255,255,255,0.28)" font-family="DM Sans" font-size="11" letter-spacing="3">CALLE PÚBLICA</text>
-          <rect x="30" y="355" width="360" height="12" fill="#2A2520"/>
-          <rect id="lot-106" class="lot-rect" x="32" y="42" width="356" height="75" rx="2"/>
-          <text class="lot-num" x="80" y="75" text-anchor="middle">106</text><text class="lot-lbl" x="210" y="74" text-anchor="middle">773,25 m²</text><text class="lot-sz" x="210" y="88" text-anchor="middle">Baldío</text>
-          <rect id="lot-105" class="lot-rect" x="32" y="120" width="356" height="75" rx="2"/>
-          <text class="lot-num" x="80" y="153" text-anchor="middle">105</text><text class="lot-lbl" x="210" y="152" text-anchor="middle">773,25 m²</text><text class="lot-sz" x="210" y="166" text-anchor="middle">Baldío</text>
-          <rect id="lot-104" class="lot-rect" x="32" y="198" width="356" height="75" rx="2"/>
-          <text class="lot-num" x="80" y="231" text-anchor="middle">104</text><text class="lot-lbl" x="210" y="230" text-anchor="middle">773,25 m²</text><text class="lot-sz" x="210" y="244" text-anchor="middle">Baldío</text>
-          <rect id="lot-103" class="lot-rect" x="32" y="276" width="356" height="75" rx="2"/>
-          <text class="lot-num" x="80" y="309" text-anchor="middle">103</text><text class="lot-lbl" x="210" y="308" text-anchor="middle">773,25 m²</text><text class="lot-sz" x="210" y="322" text-anchor="middle">Baldío</text>
-          <rect id="lot-102" class="lot-rect" x="32" y="370" width="116" height="185" rx="2"/>
-          <text class="lot-num" x="90" y="448" text-anchor="middle">102</text><text class="lot-lbl" x="90" y="466" text-anchor="middle">687,20</text><text class="lot-sz" x="90" y="481" text-anchor="middle">m² · Baldío</text>
-          <rect x="148" y="370" width="8" height="185" fill="#2A2520"/><rect x="272" y="370" width="8" height="185" fill="#2A2520"/>
-          <rect id="lot-101" class="lot-rect" x="158" y="370" width="112" height="185" rx="2"/>
-          <text class="lot-num" x="214" y="448" text-anchor="middle">101</text><text class="lot-lbl" x="214" y="466" text-anchor="middle">687,20</text><text class="lot-sz" x="214" y="481" text-anchor="middle">m² · Baldío</text>
-          <rect id="lot-100" class="lot-rect" x="282" y="370" width="106" height="185" rx="2"/>
-          <text class="lot-num" x="335" y="448" text-anchor="middle">100</text><text class="lot-lbl" x="335" y="466" text-anchor="middle">687,20</text><text class="lot-sz" x="335" y="481" text-anchor="middle">m² · Baldío</text>
-        </svg>
+
+<style>
+  :root { --gold: #C9A84C; }
+  .lote-poly {
+    fill: rgba(201,168,76,0.15);
+    stroke: #C9A84C;
+    stroke-width: 2.5;
+    stroke-linejoin: round;
+    cursor: pointer;
+    pointer-events: all;
+    transition: fill 0.25s, stroke-width 0.25s;
+  }
+  .lote-poly:hover { fill: rgba(201,168,76,0.38); stroke-width: 4; }
+  .lote-poly.activo { fill: rgba(61,107,74,0.55); stroke: #6ABF8A; stroke-width: 4; }
+  .lote-label { pointer-events: none; user-select: none; }
+  #infoPanel {
+    display: none;
+    position: absolute;
+    bottom: 28px; left: 28px;
+    background: rgba(13,13,13,0.96);
+    border-left: 4px solid #C9A84C;
+    border-radius: 12px;
+    padding: 22px;
+    width: 280px;
+    box-shadow: 0 12px 36px rgba(0,0,0,0.85);
+    backdrop-filter: blur(8px);
+    z-index: 10;
+  }
+  #infoPanel .lot-name { font-size: 22px; font-weight: 700; color: #C9A84C; margin-bottom: 4px; }
+  #infoPanel .lot-pos { font-size: 11px; color: rgba(255,255,255,0.45); letter-spacing: 1px; text-transform: uppercase; }
+  #infoPanel .lot-data { background: rgba(255,255,255,0.06); border-radius: 8px; padding: 12px; margin: 14px 0; }
+  #infoPanel .lot-row { display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 13px; }
+  #infoPanel .lot-row:last-child { margin-bottom: 0; }
+  #infoPanel .lot-row span:first-child { color: rgba(255,255,255,0.45); }
+  #infoPanel .lot-row span:last-child { font-weight: 600; color: #fff; }
+  #infoPanel .lot-row span.precio { color: #C9A84C; }
+  #infoPanel .wa-btn {
+    width: 100%; padding: 12px; background: #C9A84C; color: #0D0D0D;
+    border: none; border-radius: 8px; font-weight: 700; font-size: 14px; cursor: pointer;
+  }
+  #infoPanel .close-btn {
+    background: none; border: none; color: rgba(255,255,255,0.35);
+    cursor: pointer; font-size: 18px; line-height: 1;
+  }
+  #defaultMsg {
+    position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%);
+    background: rgba(13,13,13,0.8); border: 1px solid rgba(201,168,76,0.3);
+    border-radius: 8px; padding: 10px 18px; color: rgba(255,255,255,0.55);
+    font-size: 13px; white-space: nowrap; pointer-events: none; z-index: 5;
+    backdrop-filter: blur(6px);
+  }
+  .section-tag {
+    font-size: 12px; letter-spacing: 4px; color: #C9A84C;
+    text-transform: uppercase; display: block; margin-bottom: 14px;
+  }
+</style>
+
+<section style="background:#0A0A0A; padding:70px 20px; border-top: 2px solid #C9A84C;">
+  <div style="max-width:1100px; margin:0 auto;">
+
+    <div style="text-align:center; margin-bottom:44px;">
+      <span class="section-tag">Visualizador interactivo</span>
+      <h2 style="font-family:'Georgia',serif; font-size:38px; color:#fff; margin:0 0 12px;">Elegí tu lote.</h2>
+      <p style="color:rgba(255,255,255,0.55); font-size:15px; max-width:600px; margin:0 auto;">
+        Seleccioná un lote en el mapa y consultá por WhatsApp al instante.
+      </p>
+    </div>
+
+    <div style="position:relative; max-width:1000px; margin:0 auto;">
+
+      <img src="Lote vacío al atardecer.png"
+           alt="Vista del barrio Los Nonos"
+           style="width:100%; border-radius:18px; box-shadow:0 18px 48px rgba(0,0,0,0.8); display:block;">
+
+      <svg id="mapSvg" viewBox="0 0 1000 650"
+           style="position:absolute; top:0; left:0; width:100%; height:100%;">
+
+        <polygon class="lote-poly"
+          points="350,200 607,200 620,245 325,245"
+          data-nombre="Lote 106" data-metros="773 m²" data-precio="USD 28.000"
+          data-frente="15 m" data-fondo="51,55 m" data-posicion="Fila norte — más lejos" />
+
+        <polygon class="lote-poly"
+          points="325,245 620,245 638,290 295,290"
+          data-nombre="Lote 105" data-metros="773 m²" data-precio="USD 28.000"
+          data-frente="15 m" data-fondo="51,55 m" data-posicion="Segunda fila" />
+
+        <polygon class="lote-poly"
+          points="295,290 638,290 654,335 265,335"
+          data-nombre="Lote 104" data-metros="773 m²" data-precio="USD 28.000"
+          data-frente="15 m" data-fondo="51,55 m" data-posicion="Tercera fila" />
+
+        <polygon class="lote-poly"
+          points="265,335 654,335 667,380 240,380"
+          data-nombre="Lote 103" data-metros="773 m²" data-precio="USD 28.000"
+          data-frente="15 m" data-fondo="51,55 m" data-posicion="Cuarta fila" />
+
+        <polygon class="lote-poly"
+          points="240,380 380,380 340,500 170,500"
+          data-nombre="Lote 102" data-metros="687 m²" data-precio="USD 25.000"
+          data-frente="14 m" data-fondo="49 m" data-posicion="Fila sur — izquierda" />
+
+        <polygon class="lote-poly"
+          points="380,380 525,380 515,500 342,500"
+          data-nombre="Lote 101" data-metros="687 m²" data-precio="USD 25.000"
+          data-frente="14 m" data-fondo="49 m" data-posicion="Fila sur — centro" />
+
+        <polygon class="lote-poly"
+          points="525,380 667,380 712,500 514,500"
+          data-nombre="Lote 100" data-metros="687 m²" data-precio="USD 25.000"
+          data-frente="14 m" data-fondo="49 m" data-posicion="Fila sur — derecha" />
+
+        <g class="lote-label">
+          <text x="485" y="227" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="13" font-family="sans-serif" font-weight="600">106</text>
+          <text x="485" y="273" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="13" font-family="sans-serif" font-weight="600">105</text>
+          <text x="475" y="317" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="13" font-family="sans-serif" font-weight="600">104</text>
+          <text x="460" y="360" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="13" font-family="sans-serif" font-weight="600">103</text>
+          <text x="265" y="445" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="13" font-family="sans-serif" font-weight="600">102</text>
+          <text x="428" y="445" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="13" font-family="sans-serif" font-weight="600">101</text>
+          <text x="605" y="445" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="13" font-family="sans-serif" font-weight="600">100</text>
+        </g>
+      </svg>
+
+      <div id="defaultMsg">↑ Hacé clic en un lote para ver detalles</div>
+
+      <div id="infoPanel">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;">
+          <div>
+            <div class="lot-name" id="pNombre"></div>
+            <div class="lot-pos" id="pPosicion"></div>
+          </div>
+          <button class="close-btn" id="closeBtn">✕</button>
+        </div>
+        <div class="lot-data">
+          <div class="lot-row"><span>Superficie</span><span id="pMetros"></span></div>
+          <div class="lot-row"><span>Frente</span><span id="pFrente"></span></div>
+          <div class="lot-row"><span>Fondo</span><span id="pFondo"></span></div>
+          <div class="lot-row"><span>Escritura</span><span>✅ Inmediata</span></div>
+          <div class="lot-row"><span>Precio</span><span class="precio" id="pPrecio"></span></div>
+        </div>
+        <button class="wa-btn" id="waBtn">Consultar por WhatsApp</button>
+        <p style="font-size:11px; color:rgba(255,255,255,0.28); text-align:center; margin-top:10px;">
+          Tocá otro lote para comparar
+        </p>
       </div>
 
-      <div class="info-panel">
-        <div class="ipd" id="ipd">↑ Hacé clic en un lote para ver detalles</div>
-        <div class="ipc" id="ipc">
-          <div class="iln" id="iln">Lote #106</div>
-          <div class="ils" id="ils">773,25 m² · Baldío</div>
-          <div class="igrid">
-            <div><label>Escritura</label><span>✅ Inmediata</span></div>
-            <div><label>Estado</label><span>Disponible</span></div>
-            <div><label>Precio</label><span class="ipr" id="ipr">USD 28.000</span></div>
-            <div><label>Precio/m²</label><span id="im2">≈ USD 36/m²</span></div>
-          </div>
-          <div class="igrid">
-            <div><label>Frente</label><span id="ifront">15,00 m</span></div>
-            <div><label>Profundidad</label><span id="iprof">51,55 m</span></div>
-            <div><label>Orientación</label><span id="iorient">Norte - frente a calle pública</span></div>
-          </div>
-          <button class="build-btn" onclick="startConstruction()">Visualizar mi casa acá</button>
-        </div>
-      </div>
     </div>
+
   </div>
 </section>
+
+<script>
+(function() {
+  var lotes = document.querySelectorAll('.lote-poly');
+  var panel = document.getElementById('infoPanel');
+  var defMsg = document.getElementById('defaultMsg');
+  var pNombre = document.getElementById('pNombre');
+  var pPosicion = document.getElementById('pPosicion');
+  var pMetros = document.getElementById('pMetros');
+  var pFrente = document.getElementById('pFrente');
+  var pFondo = document.getElementById('pFondo');
+  var pPrecio = document.getElementById('pPrecio');
+  var waBtn = document.getElementById('waBtn');
+  var closeBtn = document.getElementById('closeBtn');
+  var current = null;
+
+  lotes.forEach(function(lote) {
+    lote.addEventListener('click', function(e) {
+      e.stopPropagation();
+      lotes.forEach(function(l) { l.classList.remove('activo'); });
+      this.classList.add('activo');
+      current = this.dataset;
+
+      pNombre.textContent = current.nombre;
+      pPosicion.textContent = current.posicion;
+      pMetros.textContent = current.metros;
+      pFrente.textContent = current.frente;
+      pFondo.textContent = current.fondo;
+      pPrecio.textContent = current.precio;
+
+      panel.style.display = 'block';
+      defMsg.style.display = 'none';
+    });
+  });
+
+  closeBtn.addEventListener('click', function() {
+    panel.style.display = 'none';
+    defMsg.style.display = 'block';
+    lotes.forEach(function(l) { l.classList.remove('activo'); });
+    current = null;
+  });
+
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.lote-poly') && !e.target.closest('#infoPanel')) {
+      panel.style.display = 'none';
+      defMsg.style.display = 'block';
+      lotes.forEach(function(l) { l.classList.remove('activo'); });
+      current = null;
+    }
+  });
+
+  waBtn.addEventListener('click', function() {
+    if (!current) return;
+    var msg = 'Hola!%0A%0A' +
+      'Me interesa el ' + current.nombre + '%0A' +
+      '%E2%80%A2 Superficie: ' + current.metros + '%0A' +
+      '%E2%80%A2 Precio: ' + current.precio + '%0A%0A' +
+      '%C2%BFPodr%C3%ADas darme m%C3%A1s informaci%C3%B3n%3F%0A%0AGracias!';
+    window.open('https://wa.me/543512341468?text=' + msg, '_blank');
+  });
+})();
+</script>
 
 <!-- HOUSE -->
 <section class="house-sec" id="houseSec">
@@ -567,7 +716,7 @@ footer span{color:var(--gold);}
   </div>
 </section>
 
-<!-- NUEVA SECCIÓN: CONOCÉ EL BARRIO (CON MAPA DESPLEGABLE) -->
+<!-- SECCIÓN: CONOCÉ EL BARRIO - CON MAPA INTERACTIVO DE GOOGLE MAPS -->
 <section class="col-sec" style="background:var(--dark2); padding:100px 20px;">
   <div class="inn" style="max-width:1100px; margin:0 auto;">
     <span class="section-tag">Barrio consolidado</span>
@@ -583,51 +732,117 @@ footer span{color:var(--gold);}
     <div style="text-align:center; margin-bottom:30px;">
       <button onclick="toggleBarrioMap()" id="mapToggleBtn"
               style="padding:16px 32px; background:rgba(201,168,76,.15); color:var(--gold); border:1px solid var(--gold); border-radius:12px; font-size:15px; font-weight:600; cursor:pointer;">
-        Ver vista satelital actual del barrio ▼
+        Ver mapa interactivo del barrio ▼
       </button>
     </div>
 
-    <!-- Contenido desplegable del mapa -->
-    <div id="barrioMapContainer" style="display:none; margin-top:20px;">
-      <div style="text-align:center;">
-        <img src="barrio-sat.jpg" alt="Vista aérea real - Barrio Los Nonos 2026" 
-             style="width:100%; max-width:920px; border-radius:16px; box-shadow:0 15px 40px rgba(0,0,0,.6);">
-        
-        <p style="margin-top:14px; font-size:13px; color:rgba(255,255,255,.5);">
-          Vista satelital actual (abril 2026) – Barrio Los Nonos, Colonia Tirolesa
-        </p>
+    <!-- Contenedor del mapa interactivo (desplegable) -->
+    <div id="barrioMapContainer" style="display:none; margin-top:20px; text-align:center;">
+      <iframe 
+        width="100%" 
+        height="480" 
+        style="border:0; border-radius:16px; box-shadow:0 15px 40px rgba(0,0,0,.6); max-width:920px;"
+        loading="lazy" 
+        allowfullscreen 
+        referrerpolicy="no-referrer-when-downgrade"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3404.5!2d-64.07146!3d-31.24656!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzHCsDE0JzQ3LjYiUyA2NMKwMDQnMDkuOCJX!5e0!3m2!1ses!2sar!4v1740000000000">
+      </iframe>
 
-        <!-- Google Maps -->
-        <a href="https://www.google.com/maps/search/?api=1&query=-31.246562,-64.069272" 
-           target="_blank" 
-           style="display:inline-flex; align-items:center; gap:10px; margin-top:20px; background:var(--dark4); padding:16px 32px; border-radius:12px; color:var(--gold); text-decoration:none; font-weight:600; border:1px solid rgba(201,168,76,.3);">
-          <span style="font-size:22px;"></span>
-          Abrir ubicación exacta en Google Maps
-        </a>
-        
-        <p style="margin-top:12px; font-size:12px; color:rgba(255,255,255,.45);">
-          Coordenadas: -31.246562, -64.069272
-        </p>
-      </div>
+      <p style="margin-top:14px; font-size:13px; color:rgba(255,255,255,.5);">
+        Mapa interactivo - Barrio Los Nonos, Colonia Tirolesa, Córdoba
+      </p>
+
+      <a href="https://www.google.com/maps/search/?api=1&query=-31.246562,-64.069272" 
+         target="_blank" 
+         style="display:inline-flex; align-items:center; gap:10px; margin-top:20px; background:var(--dark4); padding:16px 32px; border-radius:12px; color:var(--gold); text-decoration:none; font-weight:600; border:1px solid rgba(201,168,76,.3);">
+        Abrir en Google Maps
+      </a>
     </div>
-
   </div>
 </section>
 
-<!-- COLONIA -->
-<section class="col-sec" id="colonia">
+
+<style>
+:root { --gold: #C9A84C; --gold-light: rgba(201,168,76,0.15); --dark: #0A0A0A; --card-bg: rgba(255,255,255,0.04); --card-border: rgba(255,255,255,0.08); }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body, div, p, span, h1, h2, h3, li { font-family: 'DM Sans', system-ui, sans-serif; }
+.sec { background: #0A0A0A; padding: 80px 20px; color: white; }
+.sec + .sec { border-top: 1px solid rgba(255,255,255,0.07); }
+.inn { max-width: 1100px; margin: 0 auto; }
+.stag { font-size: 12px; letter-spacing: 4px; color: var(--gold); text-transform: uppercase; display: block; margin-bottom: 14px; }
+.stit { font-family: 'Georgia', serif; font-size: 40px; color: white; line-height: 1.2; margin-bottom: 18px; font-weight: 400; }
+.sdesc { color: rgba(255,255,255,0.58); font-size: 16px; line-height: 1.7; max-width: 700px; margin-bottom: 48px; }
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 2px; background: rgba(255,255,255,0.06); border-radius: 16px; overflow: hidden; margin-bottom: 56px; }
+.stat { padding: 28px 20px; background: #111; text-align: center; }
+.stat .n { font-size: 34px; font-weight: 700; color: var(--gold); display: block; }
+.stat .l { font-size: 12px; color: rgba(255,255,255,0.45); margin-top: 4px; display: block; line-height: 1.4; }
+.cgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+.cc { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 16px; padding: 28px; }
+.cc.wide { grid-column: 1 / -1; }
+.cc.highlight { border-color: rgba(201,168,76,0.4); background: rgba(201,168,76,0.06); }
+.cc-icon { font-size: 28px; display: block; margin-bottom: 14px; }
+.cc h3 { font-size: 17px; font-weight: 600; color: white; margin-bottom: 12px; line-height: 1.35; }
+.cc p { font-size: 14px; color: rgba(255,255,255,0.6); line-height: 1.7; }
+.tl { margin-top: 20px; display: flex; flex-direction: column; gap: 0; }
+.tli { display: flex; gap: 16px; align-items: flex-start; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.tli:last-child { border-bottom: none; }
+.tly { font-size: 13px; font-weight: 700; color: var(--gold); min-width: 38px; }
+.tle { font-size: 13px; color: rgba(255,255,255,0.6); }
+.gbsec { margin-top: 20px; display: flex; flex-direction: column; gap: 14px; }
+.gr { display: flex; align-items: center; gap: 10px; }
+.gl { font-size: 12px; color: rgba(255,255,255,0.45); min-width: 90px; }
+.gtr { flex: 1; height: 6px; background: rgba(255,255,255,0.08); border-radius: 3px; overflow: hidden; }
+.gf { height: 100%; background: var(--gold); border-radius: 3px; }
+.gv { font-size: 12px; font-weight: 600; color: var(--gold); min-width: 50px; text-align: right; }
+.cc-li, .svc-li { list-style: none; margin-top: 16px; display: flex; flex-direction: column; gap: 8px; }
+.cc-li li, .svc-li li { font-size: 13px; color: rgba(255,255,255,0.6); padding-left: 16px; position: relative; line-height: 1.5; }
+.cc-li li::before, .svc-li li::before { content: '→'; position: absolute; left: 0; color: var(--gold); font-size: 11px; top: 2px; }
+.badge { display: inline-block; background: rgba(201,168,76,0.18); color: var(--gold); font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 5px 12px; border-radius: 20px; margin-bottom: 16px; }
+.invert-badge { background: var(--gold); color: #0A0A0A; }
+.obra-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-top: 22px; }
+.obra-item { background: rgba(255,255,255,0.05); border-radius: 10px; padding: 16px; border-left: 3px solid var(--gold); }
+.obra-item .ot { font-size: 13px; font-weight: 600; color: white; margin-bottom: 4px; }
+.obra-item .od { font-size: 12px; color: rgba(255,255,255,0.5); line-height: 1.5; }
+.quote-block { border-left: 3px solid var(--gold); padding: 16px 20px; background: rgba(201,168,76,0.06); border-radius: 0 10px 10px 0; margin-top: 20px; }
+.quote-block p { font-size: 14px; color: rgba(255,255,255,0.7); line-height: 1.7; font-style: italic; }
+.quote-block span { font-size: 12px; color: rgba(255,255,255,0.4); display: block; margin-top: 8px; }
+.coop-nums { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+.cn { background: rgba(255,255,255,0.06); border-radius: 10px; padding: 14px; text-align: center; }
+.cn .v { font-size: 26px; font-weight: 700; color: var(--gold); }
+.cn .d { font-size: 11px; color: rgba(255,255,255,0.45); margin-top: 4px; line-height: 1.4; }
+.feat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: 1100px; margin: 0 auto; }
+.fcard { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 16px; padding: 28px; transition: border-color 0.2s; }
+.fcard:hover { border-color: rgba(201,168,76,0.35); }
+.ficon { font-size: 28px; display: block; margin-bottom: 14px; }
+.ftit { font-size: 16px; font-weight: 600; color: white; margin-bottom: 10px; }
+.ftxt { font-size: 14px; color: rgba(255,255,255,0.58); line-height: 1.65; }
+.now-banner { background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.3); border-radius: 14px; padding: 32px; margin-top: 20px; display: flex; gap: 24px; align-items: flex-start; flex-wrap: wrap; }
+.now-banner .nb-left { flex: 1; min-width: 220px; }
+.now-banner h3 { font-size: 22px; font-weight: 700; color: var(--gold); margin-bottom: 10px; }
+.now-banner p { font-size: 14px; color: rgba(255,255,255,0.65); line-height: 1.7; }
+.now-banner .nb-right { display: flex; flex-direction: column; gap: 10px; min-width: 200px; }
+.now-stat { background: rgba(0,0,0,0.3); border-radius: 10px; padding: 12px 16px; }
+.now-stat .ns-n { font-size: 22px; font-weight: 700; color: var(--gold); }
+.now-stat .ns-l { font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 2px; }
+</style>
+
+<section class="sec">
   <div class="inn">
-    <span class="section-tag">Conocé la zona</span>
-    <h2 class="section-title">Colonia Tirolesa.<br>Una ciudad con historia<br>y futuro.</h2>
-    <p class="section-desc">Barrio casi completo, con vecinos estables y un ambiente familiar y cálido. No solo comprás un lote: elegís vivir en una comunidad real, con identidad, seguridad y todo a pasos.</p>
-    <div class="col-stats">
-      <div class="cs"><span class="n">8.177</span><span class="l">Habitantes (Censo 2022)</span></div>
-      <div class="cs"><span class="n">133</span><span class="l">Años de historia</span></div>
-      <div class="cs"><span class="n">27km</span><span class="l">De Córdoba capital</span></div>
-      <div class="cs"><span class="n">1891</span><span class="l">Año de fundación</span></div>
-      <div class="cs"><span class="n">3.600</span><span class="l">Usuarios cooperativa</span></div>
+    <span class="stag">Conocé la zona</span>
+    <h2 class="stit">Colonia Tirolesa.<br>Una ciudad con historia<br>y futuro.</h2>
+    <p class="sdesc">Barrio casi completo, con vecinos estables y un ambiente familiar y cálido. No solo comprás un lote: elegís vivir en una comunidad real, con identidad, seguridad y todo a pasos. Y lo mejor: estás entrando justo cuando la inversión pública explota.</p>
+
+    <div class="stats">
+      <div class="stat"><span class="n">8.177</span><span class="l">Habitantes (Censo 2022)</span></div>
+      <div class="stat"><span class="n">134</span><span class="l">Años de historia</span></div>
+      <div class="stat"><span class="n">27 km</span><span class="l">De Córdoba capital</span></div>
+      <div class="stat"><span class="n">1891</span><span class="l">Año de fundación</span></div>
+      <div class="stat"><span class="n">4.300</span><span class="l">Usuarios cooperativa eléctrica</span></div>
+      <div class="stat"><span class="n">25</span><span class="l">Obras activas en 2024</span></div>
     </div>
-    <div class="col-grid">
+
+    <div class="cgrid">
+
       <div class="cc">
         <span class="cc-icon">🏔️</span>
         <h3>Raíces tirolesas, identidad única</h3>
@@ -635,68 +850,175 @@ footer span{color:var(--gold);}
         <div class="tl">
           <div class="tli"><div class="tly">1875</div><div class="tle">Salida del Tirol austriaco</div></div>
           <div class="tli"><div class="tly">1891</div><div class="tle">Fundación en Córdoba</div></div>
-          <div class="tli"><div class="tly">1939</div><div class="tle">1ª Reina Vendimia</div></div>
-          <div class="tli"><div class="tly">2026</div><div class="tle">Zona en pleno crecimiento</div></div>
+          <div class="tli"><div class="tly">1956</div><div class="tle">Fundación de la Cooperativa Eléctrica</div></div>
+          <div class="tli"><div class="tly">2024</div><div class="tle">Año histórico: 25 obras simultáneas</div></div>
+          <div class="tli"><div class="tly">2026</div><div class="tle">Zona en máximo crecimiento provincial</div></div>
         </div>
       </div>
+
       <div class="cc">
         <span class="cc-icon">📈</span>
         <h3>Una de las zonas que más crece en Córdoba</h3>
-        <p>Reconocida como zona de máximo crecimiento urbano provincial, atrayendo familias que buscan tranquilidad sin alejarse de la ciudad.</p>
-        <div class="gb-sec">
+        <p>Reconocida como zona de máximo crecimiento urbano provincial, atrayendo familias que buscan tranquilidad sin alejarse de la ciudad. Quienes compraron hace 5 años hoy ven cómo subió el valor de su inversión.</p>
+        <div class="gbsec">
           <div class="gr"><span class="gl">Población</span><div class="gtr"><div class="gf" style="width:82%"></div></div><span class="gv">+82%</span></div>
           <div class="gr"><span class="gl">Comercios</span><div class="gtr"><div class="gf" style="width:65%"></div></div><span class="gv">En alza</span></div>
           <div class="gr"><span class="gl">Valor m²</span><div class="gtr"><div class="gf" style="width:74%"></div></div><span class="gv">Subiendo</span></div>
           <div class="gr"><span class="gl">Urbanización</span><div class="gtr"><div class="gf" style="width:90%"></div></div><span class="gv">Activa</span></div>
+          <div class="gr"><span class="gl">Obra pública</span><div class="gtr"><div class="gf" style="width:95%"></div></div><span class="gv">Máximo hist.</span></div>
         </div>
       </div>
-      <div class="cc">
-        <span class="cc-icon">🎉</span>
-        <h3>Tradiciones y fiestas populares</h3>
-        <p>La vida comunitaria es uno de los grandes atractivos. El pueblo mantiene vivas sus tradiciones europeas con celebraciones que unen a toda la familia.</p>
-        <ul class="cc-li">
-          <li>Aniversario del pueblo — 18 de octubre</li>
-          <li>Tradición de chacinados y embutidos tiroleses</li>
-          <li>Juego de la mora</li>
-          <li>Fiestas patronales y Vendimia en Colonia Caroya</li>
-        </ul>
+
+      <div class="cc highlight wide">
+        <span class="badge invert-badge">El mejor momento para comprar</span>
+        <h3>2025–2026: el año histórico que valoriza tu inversión</h3>
+        <p style="margin-bottom: 18px;">El municipio cerró 2025 con 25 obras en marcha simultáneas. Quienes compran hoy entran antes de que esa infraestructura se refleje en el precio de los lotes. Estas son las obras que ya están en ejecución o terminadas:</p>
+        <div class="obra-grid">
+          <div class="obra-item">
+            <div class="ot">Escuela secundaria nueva</div>
+            <div class="od">1.514 m² cubiertos. 5 aulas + taller de robótica + laboratorio. Capacidad 180 alumnos por turno. Inaugurada en 2024.</div>
+          </div>
+          <div class="obra-item">
+            <div class="ot">Polideportivo social</div>
+            <div class="od">Colindante con la Casa de la Cultura y el Centro de Jubilados, sobre calle Illia. Financiado por provincia.</div>
+          </div>
+          <div class="obra-item">
+            <div class="ot">Cordón cuneta en barrio Estación</div>
+            <div class="od">1.200 metros lineales en calles Buenos Aires e Italia. Inversión de 50 millones de pesos con fondos FOCOM.</div>
+          </div>
+          <div class="obra-item">
+            <div class="ot">Ampliación red de agua potable</div>
+            <div class="od">Obra del Ministerio de Infraestructura provincial para mejorar distribución en toda la localidad.</div>
+          </div>
+          <div class="obra-item">
+            <div class="ot">Nueva unidad sanitaria</div>
+            <div class="od">Toyota Hiace 0 km entregada por el Ente Metropolitano para traslado de pacientes crónicos y oncológicos.</div>
+          </div>
+          <div class="obra-item">
+            <div class="ot">Aportes a Bomberos Voluntarios</div>
+            <div class="od">20 millones de pesos entregados por la Vicegobernadora de Córdoba en visita oficial a la localidad.</div>
+          </div>
+        </div>
       </div>
+
+      <div class="cc">
+        <span class="cc-icon">⚡</span>
+        <h3>Cooperativa propia: luz + fibra óptica para las próximas 2 décadas</h3>
+        <p>La Cooperativa Eléctrica (fundada en 1956) no solo existe: está invirtiendo en grande. Actualmente ejecuta la obra de infraestructura más importante de su historia.</p>
+        <div class="coop-nums">
+          <div class="cn"><div class="v">16 km</div><div class="d">Cable subterráneo + fibra óptica en ejecución</div></div>
+          <div class="cn"><div class="v">3×</div><div class="d">Va a triplicar la capacidad eléctrica actual del sistema</div></div>
+          <div class="cn"><div class="v">16 MW</div><div class="d">Potencia adicional disponible al finalizar</div></div>
+          <div class="cn"><div class="v">20 años</div><div class="d">Proyección de cobertura de la demanda futura</div></div>
+        </div>
+        <p style="margin-top:16px; font-size: 13px; color: rgba(255,255,255,0.45);">El cable es subterráneo: sin cortes por tormentas, sin postes. Y la fibra óptica va por el mismo conducto — internet de alta velocidad gestionado por la propia comunidad.</p>
+      </div>
+
       <div class="cc">
         <span class="cc-icon">🏫</span>
-        <h3>Educación y servicios completos</h3>
+        <h3>Educación completa, incluso para el futuro del trabajo</h3>
         <p>Todo lo que una familia necesita, a minutos del barrio:</p>
         <ul class="svc-li">
           <li>Jardín de infantes</li>
-          <li>Dos escuelas primarias</li>
-          <li>IPET técnico y secundaria con formación profesional</li>
+          <li>Cuatro escuelas primarias</li>
+          <li>IPETyM técnico con formación profesional</li>
+          <li>Escuela secundaria nueva (inaugurada 2024) con taller de robótica y laboratorio — financiada por la Provincia con 4.177 millones de pesos</li>
           <li>Banco Córdoba a cuadras</li>
-          <li>Polideportivo municipal en la esquina</li>
+          <li>Polideportivo municipal nuevo</li>
           <li>Plaza principal con diseño paisajístico</li>
-          <li>Dispensario médico y piletas municipales</li>
+          <li>Plaza del mate con actividades recreativas</li>
+          <li>Dispensario médico y policía</li>
+          <li>Piletas municipales</li>
+          <li>Centro de jubilados y Casa de la Cultura</li>
+          <li>Iglesias </li>
         </ul>
       </div>
-      <div class="cc wide">
-        <span class="cc-icon">⚡</span>
-        <h3>Infraestructura cooperativa e independencia de servicios</h3>
-        <p>Colonia Tirolesa tiene su propia Cooperativa de Servicios Eléctricos y Públicos (fundada en 1956) que abastece a más de 3.600 usuarios con electricidad estable e internet de alta velocidad. El municipio es activo y la comunidad muy unida.</p>
+
+      <div class="cc">
+        <span class="cc-icon">🧉</span>
+        <h3>Tradiciones y comunidad viva</h3>
+        <p>No es un barrio cerrado sin alma: es un pueblo con identidad. La vida comunitaria es uno de los grandes atractivos para familias que escapan del anonimato de la ciudad.</p>
+        <ul class="cc-li">
+          <li>Aniversario del pueblo — 18 de octubre, fiesta masiva</li>
+          <li>Chacinados y embutidos tiroleses artesanales</li>
+          <li>Fiestas patronales</li>
+          <li>Camping municipal con asadores y parque de flora autóctona</li>
+        </ul>
       </div>
+
+      <div class="cc wide">
+        <span class="cc-icon">🛣️</span>
+        <h3>A 15 minutos de Córdoba, sin el caos de vivir adentro</h3>
+        <p>Ruta A-174 completamente pavimentada. Colectivo directo desde la Terminal Nueva de Córdoba (empresa Colonia Tirolesa). Podés trabajar en la ciudad y volver a tu casa en un pueblo donde todos se conocen, hay espacio para los chicos y el m² todavía vale lo que tendrá que valer.</p>
+        <div class="now-banner">
+          <div class="nb-left">
+            <h3>Hoy podés adelantarte al crecimiento.</h3>
+            <p>Mientras Colonia Tirolesa avanza con obras clave —escuelas, fibra óptica, espacios deportivos—, los precios aún no reflejan todo ese desarrollo.
+Eso significa una sola cosa: estás llegando antes que todos.En pocos años, estos mismos terrenos van a valer mucho más.La diferencia está en decidir hoy.</p>
+          </div>
+          <div class="nb-right">
+            <div class="now-stat"><div class="ns-n">USD 36/m²</div><div class="ns-l">Precio actual — uno de los más bajos de la zona metropolitana</div></div>
+            <div class="now-stat"><div class="ns-n">Escritura inmediata</div><div class="ns-l">Firmás hoy, es tuyo hoy</div></div>
+            <div class="now-stat"><div class="ns-n">25 obras activas</div><div class="ns-l">En ejecución justo ahora</div></div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
 
-<!-- FEATURES -->
-<section class="feat-sec">
-  <div style="text-align:center;">
-    <span class="section-tag">Por qué elegir este barrio</span>
-    <h2 class="section-title">A pasos de todo.<br>A minutos de Córdoba.</h2>
+<section class="sec">
+  <div class="inn" style="text-align:center; margin-bottom: 48px;">
+    <span class="stag">Por qué elegir este barrio</span>
+    <h2 class="stit" style="margin: 0 auto;">A pasos de todo.<br>A minutos de Córdoba.</h2>
   </div>
   <div class="feat-grid">
-    <div class="feature-card"><span class="feature-icon">🏫</span><div class="feature-title">Educación completa</div><p class="feature-text">Jardín, dos escuelas primarias, IPET técnico y secundaria con formación profesional inaugurada en 2024.</p></div>
-    <div class="feature-card"><span class="feature-icon">🏦</span><div class="feature-title">Servicios bancarios</div><p class="feature-text">Banco Córdoba a cuadras. Municipalidad y dispensario médico en el centro del pueblo.</p></div>
-    <div class="feature-card"><span class="feature-icon">🏊</span><div class="feature-title">Recreación</div><p class="feature-text">Polideportivo en la esquina, plaza principal y piletas municipales. Espacios verdes y tranquilidad para toda la familia.</p></div>
-    <div class="feature-card"><span class="feature-icon">🛣️</span><div class="feature-title">Ruta A-174</div><p class="feature-text">Conexión directa pavimentada con Córdoba capital. A 27 km, sin tráfico de ciudad.</p></div>
-    <div class="feature-card"><span class="feature-icon">📄</span><div class="feature-title">Escritura inmediata</div><p class="feature-text">Firmás y te vas con tu escritura. Sin demoras ni trabas burocráticas.</p></div>
-    <div class="feature-card"><span class="feature-icon">⚡</span><div class="feature-title">Cooperativa propia</div><p class="feature-text">Servicios eléctricos e internet gestionados por la comunidad. Más de 65 años de historia cooperativa.</p></div>
+    <div class="fcard">
+      <span class="ficon">🏫</span>
+      <div class="ftit">Educación de nivel</div>
+      <p class="ftxt">Desde jardín hasta formación técnica completa: cuatro escuelas primarias, IPETyM y una secundaria moderna con taller de robótica inaugurada en 2024. Invertir acá también es invertir en el futuro de tu familia.</p>
+    </div>
+    <div class="fcard">
+      <span class="ficon">🏦</span>
+      <div class="ftit">Servicios que ya funcionan</div>
+      <p class="ftxt">Banco, municipio activo y sistema de salud en crecimiento. Todo lo que necesitás, a pocas cuadras, sin depender de la ciudad.</p>
+    </div>
+    <div class="fcard">
+      <span class="ficon">🏊</span>
+      <div class="ftit">Espacios para disfrutar todos los días</div>
+      <p class="ftxt">Polideportivo nuevo, plazas diseñadas, piletas municipales y ciclovía junto a tu futura casa. Un entorno pensado para vivir, no solo para pasar.</p>
+    </div>
+    <div class="fcard">
+      <span class="ficon">🛣️</span>
+      <div class="ftit">Conectividad real, sin complicaciones</div>
+      <p class="ftxt">Acceso directo por ruta pavimentada a solo 27 km de Córdoba. Transporte público disponible y conexión ágil, sin peajes ni tráfico urbano.</p>
+    </div>
+    <div class="fcard">
+      <span class="ficon">📄</span>
+      <div class="ftit">Escritura inmediata</div>
+      <p class="ftxt">Firmás y te vas con tu escritura. Sin demoras, sin trabas, sin fracciones pendientes. El lote es tuyo desde el primer día.</p>
+    </div>
+    <div class="fcard">
+      <span class="ficon">⚡</span>
+      <div class="ftit">Cooperativa con 70 años de historia</div>
+      <p class="ftxt">Red eléctrica ampliada, fibra óptica en desarrollo y servicios gestionados localmente. Un barrio que crece con bases sólidas.</p>
+    </div>
+    <div class="fcard">
+      <span class="ficon">🏗️</span>
+      <div class="ftit"> Obras que impulsan el valor</div>
+      <p class="ftxt">Escuelas, cordón cuneta, agua potable y espacios públicos: todo ya en ejecución y financiado. Esto no es promesa: es crecimiento en marcha.</p>
+    </div>
+    <div class="fcard">
+      <span class="ficon">🤝</span>
+      <div class="ftit">Una comunidad real</div>
+      <p class="ftxt">Más de 8.000 vecinos, identidad propia y más de un siglo de historia en Colonia Tirolesa. No es un desarrollo aislado: es un lugar donde la vida ya sucede.</p>
+    </div>
+    <div class="fcard" style="border-color: rgba(201,168,76,0.4); background: rgba(201,168,76,0.06);">
+      <span class="ficon">📊</span>
+      <div class="ftit" style="color: var(--gold);">Precio de entrada: USD 36/m²</div>
+      <p class="ftxt"> Hoy accedés a un valor que todavía no refleja todo el crecimiento en curso. Mañana, este precio ya no existe. El que compra hoy, se adelanta.</p>
+    </div>
   </div>
 </section>
 
@@ -915,10 +1237,10 @@ function toggleBarrioMap() {
   
   if (container.style.display === 'none' || container.style.display === '') {
     container.style.display = 'block';
-    btn.innerHTML = 'Ocultar vista satelital ▲';
+    btn.innerHTML = 'Ocultar mapa▲';
   } else {
     container.style.display = 'none';
-    btn.innerHTML = 'Ver vista satelital actual del barrio ▼';
+    btn.innerHTML = 'Ver mapa ▼';
   }
 }
 
