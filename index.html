@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Barrio Los Nonos — Lotes en Venta | Colonia Tirolesa</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#C9A84C;--gold-light:#E8C97A;--dark:#0D0D0D;--dark2:#141414;--dark3:#1C1C1C;--dark4:#242424;--green:#3D6B4A;--green2:#4A7C59;}
+*{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}body{background:var(--dark);color:#fff;font-family:'DM Sans',sans-serif;overflow-x:hidden;}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:18px 40px;display:flex;justify-content:space-between;align-items:center;background:rgba(13,13,13,0.93);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,0.05);}
+.nav-logo{font-family:'Playfair Display',serif;font-size:18px;letter-spacing:1px;}.nav-logo span{color:var(--gold);}
+.nav-links{display:flex;gap:24px;}.nav-links a{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.4);text-decoration:none;transition:color .2s;}.nav-links a:hover{color:var(--gold);}
+.nav-phone{background:var(--gold);color:#0D0D0D;padding:10px 20px;border-radius:4px;font-size:13px;font-weight:600;text-decoration:none;transition:background .2s;}.nav-phone:hover{background:var(--gold-light);}
+@media(max-width:700px){nav{padding:14px 18px;}.nav-links{display:none;}}
+.section-tag{font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:12px;}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(28px,5vw,52px);font-weight:700;line-height:1.1;margin-bottom:14px;}
+.section-desc{font-size:15px;color:rgba(255,255,255,.43);line-height:1.75;max-width:520px;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:translateY(0);}}
+@keyframes scrollP{0%,100%{opacity:.3;}50%{opacity:1;}}
+
+/* HERO */
+.hero{min-height:100vh;background:linear-gradient(155deg,#0A1A0C,#0D0D0D 55%,#1A1100);display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:100px 20px 60px;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 15% 85%,rgba(201,168,76,.07),transparent 55%),radial-gradient(ellipse at 85% 15%,rgba(61,107,74,.1),transparent 55%);}
+.hero-badge{font-size:11px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:var(--gold);border:1px solid rgba(201,168,76,.35);padding:8px 22px;border-radius:100px;margin-bottom:28px;animation:fadeUp .8s ease both;}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(52px,11vw,116px);font-weight:900;line-height:.9;letter-spacing:-3px;margin-bottom:14px;animation:fadeUp .8s .15s ease both;}
+.hero h1 .accent{color:var(--gold);}
+.hero-sub{font-size:clamp(13px,2vw,17px);font-weight:300;color:rgba(255,255,255,.48);letter-spacing:3px;text-transform:uppercase;margin-bottom:44px;animation:fadeUp .8s .3s ease both;}
+.hero-stats{display:flex;gap:44px;margin-bottom:52px;animation:fadeUp .8s .45s ease both;flex-wrap:wrap;justify-content:center;}
+.stat-num{font-family:'Playfair Display',serif;font-size:36px;font-weight:700;color:var(--gold);display:block;}
+.stat-label{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.32);}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;animation:fadeUp .8s .6s ease both;}
+.btn-gold{background:var(--gold);color:#0D0D0D;font-weight:600;font-size:13px;letter-spacing:1px;padding:15px 34px;border-radius:4px;border:none;cursor:pointer;text-decoration:none;transition:all .2s;font-family:'DM Sans',sans-serif;}
+.btn-gold:hover{background:var(--gold-light);transform:translateY(-2px);}
+.btn-out{background:transparent;color:#fff;font-weight:500;font-size:13px;letter-spacing:1px;padding:15px 34px;border-radius:4px;border:1px solid rgba(255,255,255,.18);text-decoration:none;transition:all .2s;font-family:'DM Sans',sans-serif;}
+.btn-out:hover{border-color:var(--gold);color:var(--gold);}
+.scroll-ind{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;animation:fadeUp 1s 1s ease both;}
+.scroll-ind span{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.22);}
+.scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,rgba(255,255,255,.22),transparent);animation:scrollP 2s infinite;}
+
+/* CAROUSEL */
+.car-section{background:var(--dark2);padding:90px 20px;overflow:hidden;}
+.car-inner{max-width:1200px;margin:0 auto;}
+.car-wrapper{position:relative;margin-top:48px;}
+.car-track{display:flex;gap:20px;transition:transform .5s cubic-bezier(.4,0,.2,1);}
+.flyer{flex:0 0 300px;height:420px;border-radius:14px;overflow:hidden;position:relative;border:1px solid rgba(255,255,255,.06);cursor:pointer;}
+.flyer:hover .f-overlay{opacity:1;}
+.f-overlay{position:absolute;inset:0;background:rgba(0,0,0,.4);display:flex;align-items:flex-end;justify-content:center;padding-bottom:20px;opacity:0;transition:opacity .3s;}
+.f-overlay-btn{background:var(--gold);color:#0D0D0D;font-size:12px;font-weight:600;letter-spacing:1px;padding:8px 20px;border-radius:100px;}
+/* Flyer 1 */
+.f1{background:linear-gradient(160deg,#0D1F0F,#0A0A0A);}
+.f1-c{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:32px;text-align:center;}
+.f-badge{background:var(--gold);color:#0D0D0D;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;padding:6px 18px;border-radius:100px;margin-bottom:20px;}
+.f-big{font-family:'Playfair Display',serif;font-size:40px;font-weight:900;line-height:.95;margin-bottom:8px;}
+.f-sub{font-size:13px;color:rgba(255,255,255,.5);letter-spacing:1px;margin-bottom:22px;}
+.f-row{display:flex;gap:16px;justify-content:center;margin-bottom:22px;}
+.f-di{text-align:center;}.f-dn{font-family:'Playfair Display',serif;font-size:22px;color:var(--gold);}
+.f-dl{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.32);}
+.f-cta{background:rgba(201,168,76,.14);border:1px solid rgba(201,168,76,.28);color:var(--gold);font-size:12px;padding:8px 20px;border-radius:4px;letter-spacing:1px;}
+/* Flyer 2 */
+.f2{background:#080808;}
+.f2-c{position:absolute;inset:0;padding:30px;display:flex;flex-direction:column;justify-content:space-between;}
+.f2-border{position:absolute;top:20px;right:20px;bottom:20px;width:2px;background:linear-gradient(to bottom,var(--gold),transparent);}
+.f2-lbl{font-size:10px;letter-spacing:4px;color:rgba(255,255,255,.28);text-transform:uppercase;margin-bottom:28px;display:block;}
+.f2-h{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;line-height:1.15;margin-bottom:14px;}
+.f2-h em{color:var(--gold);font-style:normal;}
+.f2-div{width:40px;height:2px;background:var(--gold);margin-bottom:18px;}
+.f2-list{list-style:none;display:flex;flex-direction:column;gap:9px;}
+.f2-list li{font-size:13px;color:rgba(255,255,255,.55);display:flex;align-items:center;gap:8px;}
+.f2-list li::before{content:'→';color:var(--gold);font-size:11px;}
+.f2-price{font-family:'Playfair Display',serif;font-size:30px;color:var(--gold);}
+.f2-ps{font-size:11px;color:rgba(255,255,255,.32);letter-spacing:1px;}
+/* Flyer 3 */
+.f3{background:linear-gradient(160deg,#0F1A10,#1A1200);}
+.f3-c{position:absolute;inset:0;padding:30px;display:flex;flex-direction:column;justify-content:flex-end;}
+.f3-icon{font-size:46px;margin-bottom:12px;display:block;margin-top:10px;}
+.f3-q{font-family:'Playfair Display',serif;font-style:italic;font-size:21px;line-height:1.3;margin-bottom:8px;}
+.f3-q em{color:var(--gold);font-style:normal;}
+.f3-s{font-size:12px;color:rgba(255,255,255,.38);letter-spacing:1px;}
+.f3-box{background:rgba(201,168,76,.09);border:1px solid rgba(201,168,76,.18);border-radius:8px;padding:14px;margin-top:18px;}
+.f3-ck{display:flex;flex-direction:column;gap:6px;}
+.f3-ck span{font-size:12px;color:rgba(255,255,255,.65);display:flex;align-items:center;gap:7px;}
+.f3-ck span::before{content:'✓';color:var(--gold);font-weight:700;}
+/* Flyer 4 */
+.f4{background:#0A0A0A;border:2px solid rgba(201,168,76,.18) !important;}
+.f4-c{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:30px;}
+.f4-num{font-family:'Playfair Display',serif;font-size:108px;font-weight:900;color:var(--gold);line-height:1;margin-bottom:-8px;}
+.f4-lotes{font-size:13px;letter-spacing:4px;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:26px;}
+.f4-badge{background:rgba(192,57,43,.14);border:1px solid rgba(192,57,43,.35);color:#E57373;font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:6px 18px;border-radius:100px;margin-bottom:22px;}
+.f4-info{font-family:'Playfair Display',serif;font-size:19px;line-height:1.3;margin-bottom:22px;}
+.f4-phone{font-size:17px;color:var(--gold);font-weight:600;letter-spacing:1px;}
+/* Flyer 5 */
+.f5{background:linear-gradient(135deg,#0A1200,#0A0A14);}
+.f5-c{position:absolute;inset:0;padding:26px;display:flex;flex-direction:column;}
+.f5-hdr{display:flex;align-items:center;gap:10px;margin-bottom:22px;}
+.f5-ic{width:40px;height:40px;border-radius:50%;background:rgba(201,168,76,.14);border:1px solid rgba(201,168,76,.28);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.f5-ht .t{font-size:15px;font-weight:600;}.f5-ht .s{font-size:11px;color:rgba(255,255,255,.32);letter-spacing:1px;}
+.f5-opts{display:flex;flex-direction:column;gap:9px;flex:1;}
+.fopt{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:8px;padding:13px;transition:border-color .2s;}
+.fopt:hover{border-color:rgba(201,168,76,.28);}
+.fopt-n{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:4px;}
+.fopt-d{font-size:13px;color:rgba(255,255,255,.65);line-height:1.4;}
+.fopt-t{font-size:10px;color:rgba(255,255,255,.28);margin-top:3px;}
+/* Flyer 6 */
+.f6{background:linear-gradient(160deg,#0E1A0A,#1A0E00);}
+.f6-c{position:absolute;inset:0;padding:26px;display:flex;flex-direction:column;justify-content:space-between;}
+.f6-tag{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:10px;display:block;}
+.f6-h{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;line-height:1.2;margin-bottom:14px;}
+.f6-p{font-size:13px;color:rgba(255,255,255,.45);line-height:1.6;}
+.f6-stats{display:grid;grid-template-columns:1fr 1fr;gap:9px;}
+.f6-st{background:rgba(201,168,76,.07);border:1px solid rgba(201,168,76,.12);border-radius:6px;padding:11px;text-align:center;}
+.f6-st .n{font-family:'Playfair Display',serif;font-size:20px;color:var(--gold);display:block;}
+.f6-st .l{font-size:10px;letter-spacing:1px;color:rgba(255,255,255,.32);text-transform:uppercase;}
+
+/* Carousel controls */
+.car-controls{display:flex;justify-content:center;align-items:center;gap:16px;margin-top:28px;}
+.car-btn{width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.14);background:transparent;color:#fff;font-size:18px;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;}
+.car-btn:hover{border-color:var(--gold);color:var(--gold);}
+.car-dots{display:flex;gap:8px;}
+.dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.18);cursor:pointer;transition:all .2s;}
+.dot.active{background:var(--gold);width:20px;border-radius:3px;}
+
+/* MAP */
+.map-section{background:#0A0A0A;padding:100px 20px;text-align:center;}
+.map-wrapper{max-width:900px;margin:0 auto;}
+.aerial-c{background:var(--dark3);border-radius:16px;padding:40px;border:1px solid rgba(255,255,255,.06);}
+.aerial-lbl{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.28);margin-bottom:22px;text-align:left;display:flex;align-items:center;gap:8px;}
+.aerial-lbl::before{content:'';width:24px;height:1px;background:var(--gold);}
+.plot-map{width:100%;max-width:500px;display:block;margin:0 auto;cursor:pointer;}
+.lot-rect{fill:rgba(201,168,76,.22);stroke:var(--gold);stroke-width:2;transition:all .3s;cursor:pointer;}
+.lot-rect:hover{fill:rgba(201,168,76,.45);}
+.lot-rect.selected{fill:rgba(61,107,74,.65);stroke:#6ABF8A;stroke-width:3;}
+.lot-num{fill:var(--gold);font-family:'Playfair Display',serif;font-size:13px;font-weight:700;pointer-events:none;}
+.lot-lbl{fill:rgba(255,255,255,.88);font-family:'DM Sans',sans-serif;font-size:11px;font-weight:600;pointer-events:none;}
+.lot-sz{fill:rgba(255,255,255,.52);font-family:'DM Sans',sans-serif;font-size:9px;pointer-events:none;}
+.info-panel{margin-top:26px;background:var(--dark4);border-radius:12px;padding:26px;border:1px solid rgba(255,255,255,.06);min-height:150px;}
+.ipd{display:flex;align-items:center;justify-content:center;height:100%;color:rgba(255,255,255,.2);font-size:14px;padding:20px 0;}
+.ipc{display:none;}.ipc.visible{display:block;}
+.iln{font-family:'Playfair Display',serif;font-size:24px;color:var(--gold);margin-bottom:4px;}
+.ils{font-size:13px;color:rgba(255,255,255,.4);margin-bottom:18px;}
+.igrid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px;}
+.igrid label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.28);display:block;margin-bottom:3px;}
+.igrid span{font-size:14px;font-weight:500;}
+.ipr{color:var(--gold);font-size:17px;font-weight:600;}
+.build-btn{width:100%;background:linear-gradient(135deg,var(--green2),#2D5A3D);color:#fff;border:none;padding:14px;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:all .3s;display:flex;align-items:center;justify-content:center;gap:8px;}
+.build-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(74,124,89,.28);}
+
+/* HOUSE */
+.house-sec{background:var(--dark);padding:80px 20px;text-align:center;display:none;}
+.house-sec.visible{display:block;}
+.cv-wrap{max-width:700px;margin:0 auto;background:var(--dark2);border-radius:16px;padding:40px;border:1px solid rgba(255,255,255,.06);}
+#houseCanvas{width:100%;max-width:600px;border-radius:8px;display:block;margin:0 auto;}
+.bp{margin-top:18px;background:rgba(255,255,255,.05);border-radius:100px;height:3px;overflow:hidden;}
+.bpb{height:100%;background:linear-gradient(90deg,var(--gold),var(--green2));border-radius:100px;width:0%;transition:width .3s ease;}
+.bsl{margin-top:9px;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.32);}
+.reset-btn{margin-top:18px;background:transparent;color:var(--gold);border:1px solid rgba(201,168,76,.32);padding:10px 28px;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:13px;cursor:pointer;transition:all .2s;}
+.reset-btn:hover{background:rgba(201,168,76,.08);}
+
+/* FINANCING */
+.fin-sec{padding:100px 20px;background:linear-gradient(180deg,var(--dark),#0A1500);}
+.fin-sec .inn{max-width:1100px;margin:0 auto;}
+.fin-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(278px,1fr));gap:2px;margin-top:54px;}
+.fc{background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.05);padding:34px 26px;transition:all .3s;position:relative;overflow:hidden;}
+.fc::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);transform:scaleX(0);transition:transform .4s;}
+.fc:hover{background:rgba(201,168,76,.04);}.fc:hover::before{transform:scaleX(1);}
+.fc-icon{font-size:34px;margin-bottom:14px;display:block;}
+.fc-name{font-family:'Playfair Display',serif;font-size:19px;margin-bottom:6px;}
+.fc-tag{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:12px;display:block;}
+.fc-desc{font-size:13px;color:rgba(255,255,255,.42);line-height:1.7;margin-bottom:14px;}
+.fc-hl{display:flex;flex-direction:column;gap:6px;}
+.fh{font-size:12px;color:rgba(255,255,255,.58);display:flex;align-items:flex-start;gap:7px;}
+.fh::before{content:'✓';color:var(--gold);font-weight:700;flex-shrink:0;margin-top:1px;}
+.fc.feat{border-color:rgba(201,168,76,.22);background:rgba(201,168,76,.035);}
+.fc.feat::after{content:'RECOMENDADO';position:absolute;top:14px;right:14px;font-size:9px;letter-spacing:2px;color:var(--gold);background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.22);padding:4px 10px;border-radius:100px;}
+.own-box{background:rgba(61,107,74,.1);border:1px solid rgba(61,107,74,.22);border-radius:12px;padding:30px;margin-top:26px;}
+.own-box h3{font-family:'Playfair Display',serif;font-size:24px;color:var(--gold);margin-bottom:8px;}
+.own-box p{font-size:14px;color:rgba(255,255,255,.45);margin-bottom:18px;line-height:1.7;}
+.eg-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;}
+.eg-card{background:rgba(255,255,255,.04);border-radius:8px;padding:16px;text-align:center;}
+.eg-lbl{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.28);margin-bottom:5px;}
+.eg-val{font-family:'Playfair Display',serif;font-size:19px;color:var(--gold);}
+.eg-sub{font-size:11px;color:rgba(255,255,255,.3);margin-top:2px;}
+
+/* COLONIA */
+.col-sec{padding:100px 20px;background:var(--dark2);}
+.col-sec .inn{max-width:1100px;margin:0 auto;}
+.col-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:2px;margin:52px 0 60px;}
+.cs{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.05);padding:26px 18px;text-align:center;}
+.cs .n{font-family:'Playfair Display',serif;font-size:36px;color:var(--gold);display:block;font-weight:700;}
+.cs .l{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.28);display:block;margin-top:4px;}
+.col-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+@media(max-width:700px){.col-grid{grid-template-columns:1fr;}}
+.cc{background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.05);border-radius:12px;padding:30px;transition:all .3s;}
+.cc:hover{border-color:rgba(201,168,76,.18);background:rgba(201,168,76,.025);}
+.cc-icon{font-size:30px;margin-bottom:13px;display:block;}
+.cc h3{font-family:'Playfair Display',serif;font-size:19px;margin-bottom:9px;}
+.cc p{font-size:13px;color:rgba(255,255,255,.43);line-height:1.7;}
+.cc.wide{grid-column:1/-1;}
+.tl{display:flex;gap:0;margin-top:14px;flex-wrap:wrap;}
+.tli{flex:1;min-width:110px;padding:12px 14px;border-left:1px solid rgba(201,168,76,.18);}
+.tli:first-child{border-left:none;}
+.tly{font-family:'Playfair Display',serif;font-size:17px;color:var(--gold);}
+.tle{font-size:12px;color:rgba(255,255,255,.4);margin-top:3px;line-height:1.4;}
+.gb-sec{margin-top:14px;}
+.gr{display:flex;align-items:center;gap:12px;margin-bottom:9px;}
+.gl{font-size:12px;color:rgba(255,255,255,.45);min-width:80px;}
+.gtr{flex:1;background:rgba(255,255,255,.06);height:6px;border-radius:3px;overflow:hidden;}
+.gf{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--green2),var(--gold));}
+.gv{font-size:12px;color:var(--gold);min-width:44px;text-align:right;}
+.cc-li{list-style:none;margin-top:9px;display:flex;flex-direction:column;gap:6px;}
+.cc-li li{font-size:13px;color:rgba(255,255,255,.5);display:flex;align-items:flex-start;gap:8px;}
+.cc-li li::before{content:'🎉';font-size:11px;flex-shrink:0;margin-top:2px;}
+.svc-li{list-style:none;margin-top:9px;display:flex;flex-direction:column;gap:7px;}
+.svc-li li{font-size:13px;color:rgba(255,255,255,.5);display:flex;align-items:center;gap:8px;}
+
+/* FEATURES */
+.feat-sec{padding:100px 20px;background:linear-gradient(180deg,#0A1500,var(--dark));}
+.feat-grid{max-width:1100px;margin:54px auto 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(235px,1fr));gap:2px;}
+.feature-card{background:rgba(255,255,255,.03);padding:34px 26px;border:1px solid rgba(255,255,255,.04);transition:background .3s;}
+.feature-card:hover{background:rgba(201,168,76,.035);}
+.feature-icon{font-size:28px;margin-bottom:13px;display:block;}
+.feature-title{font-family:'Playfair Display',serif;font-size:17px;margin-bottom:7px;}
+.feature-text{font-size:13px;color:rgba(255,255,255,.4);line-height:1.7;}
+
+/* LOTES */
+.lotes-sec{padding:100px 20px;background:var(--dark2);text-align:center;}
+.lotes-grid{max-width:1000px;margin:54px auto 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(185px,1fr));gap:13px;}
+.lote-card{background:var(--dark3);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:24px 16px;transition:all .3s;cursor:pointer;}
+.lote-card:hover{border-color:var(--gold);transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,.3);}
+.lc-num{font-size:10px;letter-spacing:3px;color:rgba(255,255,255,.26);text-transform:uppercase;margin-bottom:6px;}
+.lc-size{font-family:'Playfair Display',serif;font-size:25px;font-weight:700;color:var(--gold);margin-bottom:3px;}
+.lc-unit{font-size:12px;color:rgba(255,255,255,.35);margin-bottom:13px;}
+.lc-badge{display:inline-block;background:rgba(74,124,89,.18);color:#7DC897;font-size:11px;padding:4px 12px;border-radius:100px;letter-spacing:1px;}
+
+/* CONTACT */
+.contact-sec{padding:100px 20px;background:linear-gradient(135deg,#0A1A0C,#1A1100);text-align:center;}
+.contact-card{max-width:560px;margin:54px auto 0;background:rgba(255,255,255,.04);border-radius:20px;padding:50px 42px;border:1px solid rgba(201,168,76,.16);}
+.ca{font-size:13px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.3);}
+.cp{font-family:'Playfair Display',serif;font-size:44px;font-weight:700;color:var(--gold);display:block;margin:18px 0 5px;letter-spacing:-1px;text-decoration:none;}
+.cp:hover{color:var(--gold-light);}
+.cl{font-size:13px;color:rgba(255,255,255,.3);letter-spacing:2px;text-transform:uppercase;margin-bottom:26px;}
+.chips{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;}
+.chip{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);padding:8px 20px;border-radius:100px;font-size:13px;color:rgba(255,255,255,.5);text-decoration:none;transition:all .2s;}
+.chip:hover{border-color:var(--gold);color:var(--gold);}
+footer{background:var(--dark);border-top:1px solid rgba(255,255,255,.04);padding:34px 20px;text-align:center;font-size:11px;color:rgba(255,255,255,.16);letter-spacing:1px;line-height:2;}
+footer span{color:var(--gold);}
+@media(max-width:600px){.contact-card{padding:30px 20px;}.cp{font-size:32px;}.aerial-c{padding:16px;}.igrid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Los <span>Nonos</span></div>
+  <div class="nav-links">
+    <a href="#flyers">Lotes</a>
+    <a href="#financiamiento">Financiamiento</a>
+    <a href="#colonia">La zona</a>
+    <a href="#contacto">Contacto</a>
+  </div>
+  <a href="https://wa.me/543512341468?text=Hola!%20Vi%20los%20lotes%20del%20Barrio%20Los%20Nonos" class="nav-phone" target="_blank">💬 351 234-1468</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">Barrio Los Nonos · Colonia Tirolesa · Cba</div>
+  <h1>Tu <span class="accent">tierra</span>,<br>tu hogar.</h1>
+  <p class="hero-sub">Lotes en venta · Escritura inmediata</p>
+  <div class="hero-stats">
+    <div><span class="stat-num">7</span><span class="stat-label">Lotes disponibles</span></div>
+    <div><span class="stat-num">687m²</span><span class="stat-label">Desde</span></div>
+    <div><span class="stat-num">27km</span><span class="stat-label">De Córdoba</span></div>
+    <div><span class="stat-num">3</span><span class="stat-label">Formas de pagar</span></div>
+  </div>
+  <div class="hero-cta">
+    <a href="#flyers" class="btn-gold">Ver los lotes</a>
+    <a href="#financiamiento" class="btn-out">Cómo financiarlo</a>
+  </div>
+  <div class="scroll-ind"><span>Explorar</span><div class="scroll-line"></div></div>
+</section>
+
+<!-- FLYER CAROUSEL -->
+<section class="car-section" id="flyers">
+  <div class="car-inner">
+    <span class="section-tag">Material de ventas</span>
+    <h2 class="section-title">Barrio Los Nonos.<br>Todas las opciones.</h2>
+    <p class="section-desc">Deslizá para ver lotes, inversión, financiamiento y todo sobre Colonia Tirolesa.</p>
+    <div class="car-wrapper">
+      <div class="car-track" id="carTrack">
+
+        <!-- FLYER 1 GANCHO -->
+        <div class="flyer f1">
+          <div class="f1-c">
+            <span class="f-badge">EN VENTA</span>
+            <div class="f-big">Barrio<br>Los Nonos</div>
+            <div class="f-sub">Colonia Tirolesa · Córdoba</div>
+            <div class="f-row">
+              <div class="f-di"><div class="f-dn">687</div><div class="f-dl">m² desde</div></div>
+              <div style="width:1px;background:rgba(255,255,255,.1)"></div>
+              <div class="f-di"><div class="f-dn">7</div><div class="f-dl">lotes</div></div>
+              <div style="width:1px;background:rgba(255,255,255,.1)"></div>
+              <div class="f-di"><div class="f-dn">📄</div><div class="f-dl">escritura</div></div>
+            </div>
+            <div class="f-cta">351 234-1468</div>
+          </div>
+          <div class="f-overlay"><div class="f-overlay-btn">Ver detalle</div></div>
+        </div>
+
+        <!-- FLYER 2 INVERSIÓN -->
+        <div class="flyer f2">
+          <div class="f2-border"></div>
+          <div class="f2-c">
+            <div>
+              <span class="f2-lbl">Oportunidad de inversión</span>
+              <div class="f2-h">Invertí donde<br>Córdoba <em>crece</em>.</div>
+              <div class="f2-div"></div>
+              <ul class="f2-list">
+                <li>Zona de máximo crecimiento urbano</li>
+                <li>A 27 km de Córdoba capital</li>
+                <li>Ruta A-174 pavimentada</li>
+                <li>Escritura en mano inmediata</li>
+                <li>Alta valorización proyectada</li>
+              </ul>
+            </div>
+            <div>
+              <div class="f2-price">Desde USD 19.000</div>
+              <div class="f2-ps">Precio lote · Financiación disponible</div>
+            </div>
+          </div>
+          <div class="f-overlay"><div class="f-overlay-btn">Ver detalle</div></div>
+        </div>
+
+        <!-- FLYER 3 FAMILIA -->
+        <div class="flyer f3">
+          <div class="f3-c">
+            <div>
+              <span class="f3-icon">🏡</span>
+              <div class="f3-q">"El espacio que tu <em>familia</em> merece."</div>
+              <div class="f3-s">Barrio Los Nonos · Colonia Tirolesa</div>
+            </div>
+            <div class="f3-box">
+              <div class="f3-ck">
+                <span>Lotes amplios desde 687 m²</span>
+                <span>Colegios a metros del barrio</span>
+                <span>Piletas y espacios verdes cerca</span>
+                <span>Banco Córdoba a 5 cuadras</span>
+                <span>Barrio tranquilo y seguro</span>
+              </div>
+            </div>
+          </div>
+          <div class="f-overlay"><div class="f-overlay-btn">Ver detalle</div></div>
+        </div>
+
+        <!-- FLYER 4 URGENCIA -->
+        <div class="flyer f4">
+          <div class="f4-c">
+            <div class="f4-num">7</div>
+            <div class="f4-lotes">lotes disponibles</div>
+            <div class="f4-badge">⚡ Oportunidad limitada</div>
+            <div class="f4-info">Barrio Los Nonos<br>Colonia Tirolesa</div>
+            <div class="f4-phone">351 234-1468</div>
+          </div>
+          <div class="f-overlay"><div class="f-overlay-btn">Consultar ahora</div></div>
+        </div>
+
+        <!-- FLYER 5 FINANCIAMIENTO -->
+        <div class="flyer f5">
+          <div class="f5-c">
+            <div class="f5-hdr">
+              <div class="f5-ic">💰</div>
+              <div class="f5-ht"><div class="t">3 formas de comprar</div><div class="s">Barrio Los Nonos</div></div>
+            </div>
+            <div class="f5-opts">
+              <div class="fopt"><div class="fopt-n">Financiación propia</div><div class="fopt-d">50% al contado + saldo en cuotas fijas. Sin banco ni trámites.</div><div class="fopt-t">El más rápido y flexible</div></div>
+              <div class="fopt"><div class="fopt-n">Bancor</div><div class="fopt-d">Hasta 100% financiado. TNA 4,90%. Hasta 20 años.</div><div class="fopt-t">La tasa más baja de Córdoba</div></div>
+              <div class="fopt"><div class="fopt-n">Banco Nación / Galicia</div><div class="fopt-d">Créditos UVA desde 6% TNA. Hasta 30 años de plazo.</div><div class="fopt-t">Para todo el país</div></div>
+            </div>
+          </div>
+          <div class="f-overlay"><div class="f-overlay-btn">Ver opciones</div></div>
+        </div>
+
+        <!-- FLYER 6 COLONIA -->
+        <div class="flyer f6">
+          <div class="f6-c">
+            <div>
+              <span class="f6-tag">¿Por qué aquí?</span>
+              <div class="f6-h">Colonia Tirolesa:<br>la ciudad que no para de crecer.</div>
+              <div class="f6-p">Fundada en 1891, hoy es una de las zonas de mayor crecimiento urbano de la provincia de Córdoba.</div>
+            </div>
+            <div class="f6-stats">
+              <div class="f6-st"><span class="n">8.177</span><span class="l">Habitantes</span></div>
+              <div class="f6-st"><span class="n">133</span><span class="l">Años de historia</span></div>
+              <div class="f6-st"><span class="n">27km</span><span class="l">de Córdoba</span></div>
+              <div class="f6-st"><span class="n">2</span><span class="l">Esc. primarias</span></div>
+            </div>
+          </div>
+          <div class="f-overlay"><div class="f-overlay-btn">Conocer más</div></div>
+        </div>
+
+      </div>
+      <div class="car-controls">
+        <button class="car-btn" id="prevBtn">‹</button>
+        <div class="car-dots" id="carDots"></div>
+        <button class="car-btn" id="nextBtn">›</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAP -->
+<section class="map-section" id="mapa">
+  <span class="section-tag">Visualizador interactivo</span>
+  <h2 class="section-title">Elegí tu lote.<br>Visualizá tu casa.</h2>
+  <p class="section-desc" style="margin:0 auto 48px;">Seleccioná un lote y mirá cómo quedaría tu construcción.</p>
+  <div class="map-wrapper">
+    <div class="aerial-c">
+      <div class="aerial-lbl">Vista aérea · Barrio Los Nonos</div>
+      <div style="width:100%;max-width:500px;margin:0 auto;">
+        <svg class="plot-map" viewBox="0 0 420 600" xmlns="http://www.w3.org/2000/svg">
+          <rect width="420" height="600" fill="#1C1408"/>
+          <rect x="0" y="0" width="420" height="40" fill="#2A2520"/>
+          <text x="210" y="26" text-anchor="middle" fill="rgba(255,255,255,0.28)" font-family="DM Sans" font-size="11" letter-spacing="3">CALLE PÚBLICA</text>
+          <rect x="0" y="0" width="30" height="600" fill="#2A2520"/>
+          <rect x="390" y="0" width="30" height="600" fill="#2A2520"/>
+          <rect x="0" y="560" width="420" height="40" fill="#2A2520"/>
+          <text x="210" y="582" text-anchor="middle" fill="rgba(255,255,255,0.28)" font-family="DM Sans" font-size="11" letter-spacing="3">CALLE PÚBLICA</text>
+          <rect x="30" y="355" width="360" height="12" fill="#2A2520"/>
+          <rect id="lot-106" class="lot-rect" x="32" y="42" width="356" height="75" rx="2"/>
+          <text class="lot-num" x="80" y="75" text-anchor="middle">106</text><text class="lot-lbl" x="210" y="74" text-anchor="middle">773,25 m²</text><text class="lot-sz" x="210" y="88" text-anchor="middle">Baldío</text>
+          <rect id="lot-105" class="lot-rect" x="32" y="120" width="356" height="75" rx="2"/>
+          <text class="lot-num" x="80" y="153" text-anchor="middle">105</text><text class="lot-lbl" x="210" y="152" text-anchor="middle">773,25 m²</text><text class="lot-sz" x="210" y="166" text-anchor="middle">Baldío</text>
+          <rect id="lot-104" class="lot-rect" x="32" y="198" width="356" height="75" rx="2"/>
+          <text class="lot-num" x="80" y="231" text-anchor="middle">104</text><text class="lot-lbl" x="210" y="230" text-anchor="middle">773,25 m²</text><text class="lot-sz" x="210" y="244" text-anchor="middle">Baldío</text>
+          <rect id="lot-103" class="lot-rect" x="32" y="276" width="356" height="75" rx="2"/>
+          <text class="lot-num" x="80" y="309" text-anchor="middle">103</text><text class="lot-lbl" x="210" y="308" text-anchor="middle">773,25 m²</text><text class="lot-sz" x="210" y="322" text-anchor="middle">Baldío</text>
+          <rect id="lot-102" class="lot-rect" x="32" y="370" width="116" height="185" rx="2"/>
+          <text class="lot-num" x="90" y="448" text-anchor="middle">102</text><text class="lot-lbl" x="90" y="466" text-anchor="middle">687,20</text><text class="lot-sz" x="90" y="481" text-anchor="middle">m² · Baldío</text>
+          <rect x="148" y="370" width="8" height="185" fill="#2A2520"/><rect x="272" y="370" width="8" height="185" fill="#2A2520"/>
+          <rect id="lot-101" class="lot-rect" x="158" y="370" width="112" height="185" rx="2"/>
+          <text class="lot-num" x="214" y="448" text-anchor="middle">101</text><text class="lot-lbl" x="214" y="466" text-anchor="middle">687,20</text><text class="lot-sz" x="214" y="481" text-anchor="middle">m² · Baldío</text>
+          <rect id="lot-100" class="lot-rect" x="282" y="370" width="106" height="185" rx="2"/>
+          <text class="lot-num" x="335" y="448" text-anchor="middle">100</text><text class="lot-lbl" x="335" y="466" text-anchor="middle">687,20</text><text class="lot-sz" x="335" y="481" text-anchor="middle">m² · Baldío</text>
+        </svg>
+      </div>
+      <div class="info-panel">
+        <div class="ipd" id="ipd">↑ &nbsp; Hacé clic en un lote para ver detalles</div>
+        <div class="ipc" id="ipc">
+          <div class="iln" id="iln">Lote #106</div>
+          <div class="ils" id="ils">773,25 m² · Baldío</div>
+          <div class="igrid">
+            <div><label>Escritura</label><span>✅ Inmediata</span></div>
+            <div><label>Estado</label><span>Disponible</span></div>
+            <div><label>Precio estimado</label><span class="ipr" id="ipr">USD 22.000</span></div>
+            <div><label>Precio/m²</label><span id="im2">≈ USD 28/m²</span></div>
+          </div>
+          <button class="build-btn" onclick="startConstruction()">🏗️ &nbsp; Visualizar mi casa acá</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOUSE -->
+<section class="house-sec" id="houseSec">
+  <span class="section-tag">Construcción simulada</span>
+  <h2 class="section-title" style="margin-bottom:10px;">Tu casa, paso a paso.</h2>
+  <p style="color:rgba(255,255,255,.38);font-size:14px;margin-bottom:38px;">Casa moderna argentina — planta baja + galería</p>
+  <div class="cv-wrap">
+    <canvas id="houseCanvas" width="600" height="380"></canvas>
+    <div class="bp"><div class="bpb" id="bpb"></div></div>
+    <div class="bsl" id="bsl">Preparando terreno...</div>
+    <button class="reset-btn" onclick="resetAndBuild()">🔄 Volver a construir</button>
+  </div>
+</section>
+
+<!-- FINANCING -->
+<section class="fin-sec" id="financiamiento">
+  <div class="inn">
+    <span class="section-tag">Opciones de financiamiento</span>
+    <h2 class="section-title">Tres caminos<br>para llegar a tu lote.</h2>
+    <p class="section-desc">Sin importar tu situación, hay una forma de comprar. Compartilas con quien te interese.</p>
+    <div class="fin-grid">
+      <div class="fc feat">
+        <span class="fc-icon">🤝</span>
+        <div class="fc-name">Financiación directa del dueño</div>
+        <span class="fc-tag">La más rápida · Sin banco</span>
+        <p class="fc-desc">Pagás el 50% al firmar el boleto y el saldo en cuotas fijas. Sin trámites bancarios, sin esperas, sin scoring.</p>
+        <div class="fc-hl">
+          <div class="fh">50% al contado al firmar el boleto</div>
+          <div class="fh">50% en cuotas fijas en dólares</div>
+          <div class="fh">Sin banco ni estudio de crédito</div>
+          <div class="fh">Solo con DNI y voluntad de comprar</div>
+          <div class="fh">Escritura al cancelar el saldo</div>
+        </div>
+      </div>
+      <div class="fc">
+        <span class="fc-icon">🏛️</span>
+        <div class="fc-name">Banco de Córdoba (Bancor)</div>
+        <span class="fc-tag">La tasa más baja del mercado</span>
+        <p class="fc-desc">El banco provincial ofrece la línea hipotecaria más accesible del país, financiando hasta el 100% del valor.</p>
+        <div class="fc-hl">
+          <div class="fh">TNA 4,90% — la más baja de Córdoba</div>
+          <div class="fh">Hasta 100% del valor financiado</div>
+          <div class="fh">Hasta 20 años de plazo en UVAs</div>
+          <div class="fh">Ingresos desde $470.000 familiares</div>
+          <div class="fh">Trámite online en plataforma APPTO</div>
+        </div>
+      </div>
+      <div class="fc">
+        <span class="fc-icon">🇦🇷</span>
+        <div class="fc-name">Banco Nación</div>
+        <span class="fc-tag">Tasa 6% · 100% digital</span>
+        <p class="fc-desc">Líder nacional con más de 20.000 créditos otorgados. Aprobación en menos de 24 horas vía web.</p>
+        <div class="fc-hl">
+          <div class="fh">TNA 6% + UVA</div>
+          <div class="fh">Hasta 30 años de plazo</div>
+          <div class="fh">Acepta dependencia, jubilados, monotributistas</div>
+          <div class="fh">Hasta 2 titulares + 2 codeudores familiares</div>
+          <div class="fh">Solicitud 100% online</div>
+        </div>
+      </div>
+      <div class="fc">
+        <span class="fc-icon">🏦</span>
+        <div class="fc-name">Banco Galicia</div>
+        <span class="fc-tag">Sin tope de monto · Hasta 30 años</span>
+        <p class="fc-desc">Ideal para quien cobra sueldo en Galicia o quiere sumar hasta 4 ingresos del grupo familiar.</p>
+        <div class="fc-hl">
+          <div class="fh">TNA UVA + 5,5% (con sueldo) / +7,5%</div>
+          <div class="fh">Sin límite de monto a solicitar</div>
+          <div class="fh">Suma hasta 4 ingresos familiares</div>
+          <div class="fh">Cuota no supera 25% del ingreso</div>
+          <div class="fh">Financia terreno para construcción</div>
+        </div>
+      </div>
+      <div class="fc">
+        <span class="fc-icon">💼</span>
+        <div class="fc-name">BBVA Argentina</div>
+        <span class="fc-tag">7,5% para monotributistas</span>
+        <p class="fc-desc">En 2026 bajó históricamente su tasa para monotributistas, siendo muy competitivo para trabajadores independientes.</p>
+        <div class="fc-hl">
+          <div class="fh">TNA 7,5% para monotributistas</div>
+          <div class="fh">Hasta 80% del valor financiado</div>
+          <div class="fh">Hasta 30 años de plazo</div>
+          <div class="fh">Monto mínimo $20 millones</div>
+          <div class="fh">Trámite online disponible</div>
+        </div>
+      </div>
+      <div class="fc">
+        <span class="fc-icon">💵</span>
+        <div class="fc-name">Banco Macro — En dólares</div>
+        <span class="fc-tag">Única línea en USD del mercado</span>
+        <p class="fc-desc">Para quienes tienen ingresos o ahorros en dólares. La única línea hipotecaria en moneda dura disponible en Argentina.</p>
+        <div class="fc-hl">
+          <div class="fh">Tasa 11,5% anual en USD</div>
+          <div class="fh">Hasta 5 años de plazo</div>
+          <div class="fh">Financia hasta 50% del valor</div>
+          <div class="fh">Monto máximo USD 1 millón</div>
+          <div class="fh">Ideal para inversores con dólares</div>
+        </div>
+      </div>
+    </div>
+    <div class="own-box">
+      <h3>Ejemplo real — Financiación directa del dueño</h3>
+      <p>Para un lote de <strong style="color:var(--gold)">USD 20.000</strong>, la operación más simple funciona así:</p>
+      <div class="eg-grid">
+        <div class="eg-card"><div class="eg-lbl">Al firmar el boleto</div><div class="eg-val">USD 10.000</div><div class="eg-sub">50% de entrada</div></div>
+        <div class="eg-card"><div class="eg-lbl">En 24 cuotas</div><div class="eg-val">USD 416/mes</div><div class="eg-sub">Cuota fija en dólares</div></div>
+        <div class="eg-card"><div class="eg-lbl">En 36 cuotas</div><div class="eg-val">USD 277/mes</div><div class="eg-sub">Cuota fija en dólares</div></div>
+        <div class="eg-card"><div class="eg-lbl">Escritura</div><div class="eg-val">Al cancelar</div><div class="eg-sub">Sin esperas bancarias</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COLONIA -->
+<section class="col-sec" id="colonia">
+  <div class="inn">
+    <span class="section-tag">Conocé la zona</span>
+    <h2 class="section-title">Colonia Tirolesa.<br>Una ciudad con historia<br>y futuro.</h2>
+    <p class="section-desc">No solo comprás un lote. Elegís vivir en una comunidad real, con identidad, seguridad y todo lo que necesitás a pasos.</p>
+    <div class="col-stats">
+      <div class="cs"><span class="n">8.177</span><span class="l">Habitantes (Censo 2022)</span></div>
+      <div class="cs"><span class="n">133</span><span class="l">Años de historia</span></div>
+      <div class="cs"><span class="n">27km</span><span class="l">De Córdoba capital</span></div>
+      <div class="cs"><span class="n">1891</span><span class="l">Año de fundación</span></div>
+      <div class="cs"><span class="n">3.600</span><span class="l">Usuarios cooperativa</span></div>
+    </div>
+    <div class="col-grid">
+      <div class="cc">
+        <span class="cc-icon">🏔️</span>
+        <h3>Raíces tirolesas, identidad única</h3>
+        <p>Fundada el 18 de octubre de 1891 por inmigrantes del Trentino-Alto Adige (sur de Austria), tiene una identidad cultural única. Las familias Conci, Cecato y Monasterolo trajeron tradiciones europeas que aún hoy se viven en la comunidad.</p>
+        <div class="tl">
+          <div class="tli"><div class="tly">1875</div><div class="tle">Salida del Tirol austriaco</div></div>
+          <div class="tli"><div class="tly">1891</div><div class="tle">Fundación en Córdoba</div></div>
+          <div class="tli"><div class="tly">1939</div><div class="tle">1ª Reina Vendimia</div></div>
+          <div class="tli"><div class="tly">2026</div><div class="tle">Zona en pleno crecimiento</div></div>
+        </div>
+      </div>
+      <div class="cc">
+        <span class="cc-icon">📈</span>
+        <h3>Una de las zonas que más crece en Córdoba</h3>
+        <p>Reconocida como zona de máximo crecimiento urbano provincial, atrayendo familias que buscan tranquilidad sin alejarse de la ciudad.</p>
+        <div class="gb-sec">
+          <div class="gr"><span class="gl">Población</span><div class="gtr"><div class="gf" style="width:82%"></div></div><span class="gv">+82%</span></div>
+          <div class="gr"><span class="gl">Comercios</span><div class="gtr"><div class="gf" style="width:65%"></div></div><span class="gv">En alza</span></div>
+          <div class="gr"><span class="gl">Valor m²</span><div class="gtr"><div class="gf" style="width:74%"></div></div><span class="gv">Subiendo</span></div>
+          <div class="gr"><span class="gl">Urbanización</span><div class="gtr"><div class="gf" style="width:90%"></div></div><span class="gv">Activa</span></div>
+        </div>
+      </div>
+      <div class="cc">
+        <span class="cc-icon">🎉</span>
+        <h3>Tradiciones y fiestas populares</h3>
+        <p>La vida comunitaria es uno de los grandes atractivos de Colonia Tirolesa. El pueblo mantiene vivas sus tradiciones europeas con celebraciones que unen a toda la familia:</p>
+        <ul class="cc-li">
+          <li>Aniversario del pueblo — 18 de octubre (fiesta municipal grande)</li>
+          <li>Tradición de chacinados y embutidos tiroleses artesanales</li>
+          <li>Juego de la mora (tradición ancestral italiana)</li>
+          <li>Fiestas patronales religiosas</li>
+          <li>Fiesta de la Vendimia en Colonia Caroya (vecina, muy cerca)</li>
+          <li>Eventos del club deportivo local</li>
+        </ul>
+      </div>
+      <div class="cc">
+        <span class="cc-icon">🏫</span>
+        <h3>Educación y servicios completos</h3>
+        <p>Todo lo que una familia necesita, a minutos del barrio:</p>
+        <ul class="svc-li">
+          <li><span>🎒</span>Jardín de infantes</li>
+          <li><span>📚</span>Escuela Carlos Morel (primaria)</li>
+          <li><span>📚</span>Escuela Dr. Pablo Rueda (primaria)</li>
+          <li><span>🔧</span>IPET N°83 René Favaloro (técnica)</li>
+          <li><span>🎓</span>Secundaria con Formación Profesional (inaugurada 2024)</li>
+          <li><span>🏦</span>Banco Córdoba (5 cuadras)</li>
+          <li><span>🏥</span>Dispensario médico</li>
+          <li><span>🏊</span>Piletas municipales</li>
+        </ul>
+      </div>
+      <div class="cc wide">
+        <span class="cc-icon">⚡</span>
+        <h3>Infraestructura cooperativa e independencia de servicios</h3>
+        <p>Colonia Tirolesa tiene su propia <strong style="color:var(--gold)">Cooperativa de Servicios Eléctricos y Públicos</strong>, fundada en 1956, que abastece a más de 3.600 usuarios con electricidad estable e internet de alta velocidad. La comunidad tiene autonomía de servicios e independencia de los grandes prestadores. El gobierno provincial inauguró recientemente el <strong style="color:var(--gold)">nuevo edificio de la escuela secundaria con Formación Profesional</strong>, con una inversión de más de 4.000 millones de pesos. También está en ejecución la ampliación del sistema de agua potable. El municipio es activo digitalmente con más de 9.000 seguidores en Instagram (@municipalidadcoloniatirolesa).</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="feat-sec">
+  <div style="text-align:center;">
+    <span class="section-tag">Por qué elegir este barrio</span>
+    <h2 class="section-title">A pasos de todo.<br>A minutos de Córdoba.</h2>
+  </div>
+  <div class="feat-grid">
+    <div class="feature-card"><span class="feature-icon">🏫</span><div class="feature-title">Educación completa</div><p class="feature-text">Jardín, dos escuelas primarias, IPET técnico y secundaria con formación profesional inaugurada en 2024.</p></div>
+    <div class="feature-card"><span class="feature-icon">🏦</span><div class="feature-title">Servicios bancarios</div><p class="feature-text">Banco Córdoba a 5 cuadras. Municipalidad y dispensario médico en el centro del pueblo.</p></div>
+    <div class="feature-card"><span class="feature-icon">🏊</span><div class="feature-title">Recreación</div><p class="feature-text">Piletas municipales y club deportivo. Espacios verdes y tranquilidad para toda la familia.</p></div>
+    <div class="feature-card"><span class="feature-icon">🛣️</span><div class="feature-title">Ruta A-174</div><p class="feature-text">Conexión directa pavimentada con Córdoba capital. A 27 km, sin tráfico de ciudad.</p></div>
+    <div class="feature-card"><span class="feature-icon">📄</span><div class="feature-title">Escritura inmediata</div><p class="feature-text">Firmás y te vas con tu escritura. Sin demoras ni trabas burocráticas.</p></div>
+    <div class="feature-card"><span class="feature-icon">⚡</span><div class="feature-title">Cooperativa propia</div><p class="feature-text">Servicios eléctricos e internet gestionados por la comunidad. Más de 65 años de historia cooperativa.</p></div>
+  </div>
+</section>
+
+<!-- LOTES -->
+<section class="lotes-sec" id="disponibles">
+  <span class="section-tag">Stock disponible</span>
+  <h2 class="section-title">7 lotes, todos baldíos,<br>listos para construir.</h2>
+  <div class="lotes-grid">
+    <div class="lote-card" onclick="goToLot('100')"><div class="lc-num">Lote N° 100</div><div class="lc-size">687,20</div><div class="lc-unit">metros cuadrados</div><div class="lc-badge">✓ Disponible</div></div>
+    <div class="lote-card" onclick="goToLot('101')"><div class="lc-num">Lote N° 101</div><div class="lc-size">687,20</div><div class="lc-unit">metros cuadrados</div><div class="lc-badge">✓ Disponible</div></div>
+    <div class="lote-card" onclick="goToLot('102')"><div class="lc-num">Lote N° 102</div><div class="lc-size">687,20</div><div class="lc-unit">metros cuadrados</div><div class="lc-badge">✓ Disponible</div></div>
+    <div class="lote-card" onclick="goToLot('103')"><div class="lc-num">Lote N° 103</div><div class="lc-size">773,25</div><div class="lc-unit">metros cuadrados</div><div class="lc-badge">✓ Disponible</div></div>
+    <div class="lote-card" onclick="goToLot('104')"><div class="lc-num">Lote N° 104</div><div class="lc-size">773,25</div><div class="lc-unit">metros cuadrados</div><div class="lc-badge">✓ Disponible</div></div>
+    <div class="lote-card" onclick="goToLot('105')"><div class="lc-num">Lote N° 105</div><div class="lc-size">773,25</div><div class="lc-unit">metros cuadrados</div><div class="lc-badge">✓ Disponible</div></div>
+    <div class="lote-card" onclick="goToLot('106')"><div class="lc-num">Lote N° 106</div><div class="lc-size">773,25</div><div class="lc-unit">metros cuadrados</div><div class="lc-badge">✓ Disponible</div></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-sec" id="contacto">
+  <span class="section-tag">Contacto</span>
+  <h2 class="section-title">¿Te quedaste<br>con alguno en mente?</h2>
+  <p class="section-desc" style="margin:0 auto;">Consultá sin compromiso. Respondemos rápido y coordinamos visita.</p>
+  <div class="contact-card">
+    <div class="ca">Daniela Nest · Asesora inmobiliaria</div>
+    <a href="tel:3512341468" class="cp">351 234-1468</a>
+    <div class="cl">Barrio Los Nonos · Colonia Tirolesa, Córdoba</div>
+    <div class="chips">
+      <a href="https://wa.me/543512341468?text=Hola%20Daniela!%20Vi%20los%20lotes%20del%20Barrio%20Los%20Nonos%20y%20quiero%20consultar." class="chip" target="_blank">💬 WhatsApp</a>
+      <a href="tel:3512341468" class="chip">📞 Llamar</a>
+      <a href="#mapa" class="chip">🗺️ Ver mapa</a>
+      <a href="#financiamiento" class="chip">💰 Financiamiento</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Barrio <span>Los Nonos</span> · Colonia Tirolesa, Córdoba, Argentina · Ruta A-174<br>
+  Datos poblacionales: <span>Censo INDEC 2022</span> · Tasas bancarias: <span>Actualización 2026</span><br>
+  <span style="font-size:10px;color:rgba(255,255,255,.1);">© 2026 · Todos los derechos reservados · Consultá un escribano y/o asesor financiero antes de toda operación</span></p>
+</footer>
+
+<script>
+// CAROUSEL
+const track=document.getElementById('carTrack');
+const cards=[...track.querySelectorAll('.flyer')];
+const dotsC=document.getElementById('carDots');
+let cur=0,autoT;
+cards.forEach((_,i)=>{const d=document.createElement('div');d.className='dot'+(i===0?' active':'');d.onclick=()=>{goTo(i);resetAuto();};dotsC.appendChild(d);});
+function vis(){return window.innerWidth<600?1:window.innerWidth<900?2:3;}
+function goTo(i){const max=cards.length-vis();cur=Math.max(0,Math.min(i,max));const w=cards[0].offsetWidth+20;track.style.transform=`translateX(-${cur*w}px)`;[...dotsC.querySelectorAll('.dot')].forEach((d,j)=>d.classList.toggle('active',j===cur));}
+document.getElementById('prevBtn').onclick=()=>{goTo(cur-1);resetAuto();};
+document.getElementById('nextBtn').onclick=()=>{goTo(cur+1);resetAuto();};
+function resetAuto(){clearInterval(autoT);autoT=setInterval(()=>goTo(cur+1<=cards.length-vis()?cur+1:0),4500);}
+resetAuto();window.addEventListener('resize',()=>goTo(cur));
+
+// LOT MAP
+const lots={'106':{s:773.25,p:22000},'105':{s:773.25,p:22000},'104':{s:773.25,p:22000},'103':{s:773.25,p:22000},'102':{s:687.20,p:19000},'101':{s:687.60,p:19000},'100':{s:687.20,p:19000}};
+let selLot=null;
+document.querySelectorAll('.lot-rect').forEach(r=>{r.addEventListener('click',function(){selLot=this.id.replace('lot-','');document.querySelectorAll('.lot-rect').forEach(x=>x.classList.remove('selected'));this.classList.add('selected');const d=lots[selLot];document.getElementById('ipd').style.display='none';const c=document.getElementById('ipc');c.classList.add('visible');document.getElementById('iln').textContent='Lote N° '+selLot;document.getElementById('ils').textContent=d.s.toFixed(2).replace('.',',')+' m² · Baldío';document.getElementById('ipr').textContent='USD '+d.p.toLocaleString();document.getElementById('im2').textContent='≈ USD '+Math.round(d.p/d.s)+'/m²';});});
+function goToLot(n){const e=document.getElementById('lot-'+n);if(e){selLot=n;document.querySelectorAll('.lot-rect').forEach(x=>x.classList.remove('selected'));e.classList.add('selected');const d=lots[n];document.getElementById('ipd').style.display='none';document.getElementById('ipc').classList.add('visible');document.getElementById('iln').textContent='Lote N° '+n;document.getElementById('ils').textContent=d.s.toFixed(2).replace('.',',')+' m² · Baldío';document.getElementById('ipr').textContent='USD '+d.p.toLocaleString();document.getElementById('im2').textContent='≈ USD '+Math.round(d.p/d.s)+'/m²';}document.getElementById('mapa').scrollIntoView({behavior:'smooth'});}
+
+// CANVAS
+const canvas=document.getElementById('houseCanvas');const ctx=canvas.getContext('2d');
+let step=0,total=220,timer=null;
+const stages=[{a:0,l:'Preparando terreno...'},{a:20,l:'Trazado y replanteo...'},{a:40,l:'Excavación y cimientos...'},{a:70,l:'Levantando paredes...'},{a:110,l:'Estructura del techo...'},{a:140,l:'Cubierta y terminaciones...'},{a:170,l:'Aberturas y detalles...'},{a:195,l:'Paisajismo y acceso...'},{a:215,l:'🏡 ¡Tu casa está lista!'}];
+function eo(t){return 1-Math.pow(1-t,3);}function lp(a,b,t){return a+(b-a)*t;}function cl(v,s,e){return Math.max(0,Math.min(1,(v-s)/(e-s)));}
+function rr(x,y,w,h,r){ctx.beginPath();ctx.moveTo(x+r,y);ctx.lineTo(x+w-r,y);ctx.arcTo(x+w,y,x+w,y+r,r);ctx.lineTo(x+w,y+h-r);ctx.arcTo(x+w,y+h,x+w-r,y+h,r);ctx.lineTo(x+r,y+h);ctx.arcTo(x,y+h,x,y+h-r,r);ctx.lineTo(x,y+r);ctx.arcTo(x,y,x+r,y,r);ctx.closePath();}
+function draw(s){const W=600,H=380;ctx.clearRect(0,0,W,H);const st=cl(s,60,140);const sky=ctx.createLinearGradient(0,0,0,H*.55);sky.addColorStop(0,`rgb(${Math.round(lp(30,118,st))},${Math.round(lp(30,172,st))},${Math.round(lp(50,208,st))})`);sky.addColorStop(1,`rgb(${Math.round(lp(15,168,st))},${Math.round(lp(15,208,st))},${Math.round(lp(20,242,st))})`);ctx.fillStyle=sky;ctx.fillRect(0,0,W,H);
+if(s>80){const ca=cl(s,80,130);ctx.save();ctx.globalAlpha=ca*.7;dCloud(80,40,60);dCloud(480,30,45);dCloud(300,20,35);ctx.restore();}
+const gg=ctx.createLinearGradient(0,H*.55,0,H);gg.addColorStop(0,`rgb(${Math.round(lp(38,73,cl(s,0,30)))},${Math.round(lp(28,112,cl(s,0,30)))},${Math.round(lp(18,43,cl(s,0,30)))})`);gg.addColorStop(1,'rgb(28,62,23)');ctx.fillStyle=gg;ctx.fillRect(0,H*.55,W,H);
+ctx.fillStyle=s>50?'#5A8A3E':'#3A2A15';ctx.fillRect(0,H*.55-2,W,4);
+const sT=cl(s,5,20);ctx.fillStyle=`rgba(60,55,50,${sT})`;ctx.fillRect(0,H*.82,W,H);ctx.fillStyle=`rgba(178,168,158,${sT*.55})`;ctx.fillRect(0,H*.79,W,H*.03);
+const tT=cl(s,10,40);ctx.save();ctx.globalAlpha=tT;ctx.fillStyle='#C4A35A';rr(120,H*.55,370,H*.26,4);ctx.fill();ctx.restore();
+const fT=cl(s,55,75);if(fT>0){ctx.save();ctx.globalAlpha=fT;ctx.fillStyle='#B0A898';rr(145,H*.595,320,14,3);ctx.fill();ctx.restore();}
+const wT=cl(s,70,115);if(wT>0){const wH=lp(0,130,eo(wT)),bY=H*.595;ctx.save();ctx.globalAlpha=Math.min(wT*2,1);ctx.fillStyle='#E8E0D4';rr(148,bY-wH,314,wH+12,0);ctx.fill();ctx.strokeStyle='rgba(178,168,158,.38)';ctx.lineWidth=.8;for(let r=0;r<8;r++){const y=bY+10-(r+1)*16;if(y>bY-wH&&y<bY){ctx.beginPath();ctx.moveTo(148,y);ctx.lineTo(462,y);ctx.stroke();}}ctx.fillStyle='#D4CCC0';rr(148,bY-wH,10,wH+12,0);ctx.fill();ctx.fillStyle='#C8C0B4';rr(452,bY-wH,10,wH+12,0);ctx.fill();const gH=wH*.78;ctx.fillStyle='#EDE7DC';rr(360,bY-gH,115,gH+12,0);ctx.fill();ctx.fillStyle='#C8C0B4';rr(472,bY-gH,8,gH+12,0);ctx.fill();ctx.restore();}
+const rT=cl(s,110,145);if(rT>0){const bY=H*.595-128;ctx.save();ctx.globalAlpha=eo(rT);ctx.fillStyle='#7A6E62';rr(135,bY-18,340,18,0);ctx.fill();ctx.fillStyle='#9A8E82';ctx.fillRect(130,bY-18,350,6);const gBY=H*.595-128*.78;ctx.fillStyle='#7A6E62';ctx.fillRect(355,gBY-12,130,12);ctx.fillStyle='#9A8E82';ctx.fillRect(350,gBY-12,135,5);ctx.restore();}
+const wiT=cl(s,140,175);if(wiT>0){const bY=H*.595;ctx.save();ctx.globalAlpha=eo(wiT);ctx.fillStyle='#5C3D1E';rr(195,bY-68,40,68,2);ctx.fill();ctx.strokeStyle='#3A2510';ctx.lineWidth=2;rr(193,bY-70,44,72,3);ctx.stroke();ctx.fillStyle='#C9A84C';ctx.beginPath();ctx.arc(230,bY-34,3,0,Math.PI*2);ctx.fill();dWin(165,bY-110,45,45);dWin(258,bY-110,45,45);dWin(318,bY-110,45,45);ctx.fillStyle='#B8B0A4';rr(370,bY-100,95,100,3);ctx.fill();ctx.strokeStyle='#9A9285';ctx.lineWidth=1.5;for(let i=1;i<4;i++){ctx.beginPath();ctx.moveTo(370,bY-100+i*25);ctx.lineTo(465,bY-100+i*25);ctx.stroke();}ctx.strokeStyle='#888075';ctx.lineWidth=2;rr(368,bY-102,99,104,4);ctx.stroke();ctx.restore();}
+const pT=cl(s,155,185);if(pT>0){const bY=H*.595;ctx.save();ctx.globalAlpha=eo(pT);ctx.fillStyle='#C8C0B4';rr(148,bY,210,12,0);ctx.fill();ctx.fillStyle='#E8E0D4';[152,250,348].forEach(x=>{rr(x,bY-70,8,70,2);ctx.fill();});ctx.fillStyle='#7A6E62';rr(148,bY-72,212,8,2);ctx.fill();ctx.restore();}
+const plT=cl(s,190,220);if(plT>0){const bY=H*.595;ctx.save();ctx.globalAlpha=eo(plT);ctx.fillStyle='#5A8A3E';rr(148,bY+12,210,38,2);ctx.fill();ctx.fillStyle='#6A9A4E';ctx.fillRect(480,bY+12,60,38);ctx.fillStyle='#C0B8AA';ctx.beginPath();ctx.moveTo(208,bY+50);ctx.lineTo(228,bY+50);ctx.lineTo(232,bY+12);ctx.lineTo(204,bY+12);ctx.closePath();ctx.fill();ctx.strokeStyle='#D4CCC0';ctx.lineWidth=2;for(let i=0;i<10;i++){const x=148+i*21;ctx.beginPath();ctx.moveTo(x,bY+12);ctx.lineTo(x,bY+40);ctx.stroke();}ctx.beginPath();ctx.moveTo(148,bY+22);ctx.lineTo(355,bY+22);ctx.stroke();ctx.beginPath();ctx.moveTo(148,bY+35);ctx.lineTo(355,bY+35);ctx.stroke();dTree(120,bY+10,eo(plT));dTree(490,bY+10,eo(plT)*.9);dShrub(165,bY+8);dShrub(330,bY+8);ctx.restore();}
+if(selLot&&s>10){ctx.save();ctx.globalAlpha=Math.min(cl(s,10,30),.7);ctx.fillStyle='rgba(0,0,0,.5)';ctx.font='bold 12px DM Sans';ctx.fillText('Lote N° '+selLot+' · Barrio Los Nonos',20,30);ctx.restore();}}
+function dWin(x,y,w,h){ctx.fillStyle='#9ECCE8';rr(x,y,w,h,2);ctx.fill();ctx.strokeStyle='#E8E0D4';ctx.lineWidth=2.5;rr(x-2,y-2,w+4,h+4,3);ctx.stroke();ctx.strokeStyle='rgba(255,255,255,.45)';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(x+w/2,y);ctx.lineTo(x+w/2,y+h);ctx.moveTo(x,y+h/2);ctx.lineTo(x+w,y+h/2);ctx.stroke();}
+function dTree(x,y,a){ctx.save();ctx.globalAlpha=a;ctx.fillStyle='#8B6914';rr(x-5,y,10,30,2);ctx.fill();ctx.fillStyle='#3D7A28';ctx.beginPath();ctx.arc(x,y,22,0,Math.PI*2);ctx.fill();ctx.fillStyle='#4A9032';ctx.beginPath();ctx.arc(x-8,y-8,14,0,Math.PI*2);ctx.fill();ctx.beginPath();ctx.arc(x+8,y-5,12,0,Math.PI*2);ctx.fill();ctx.restore();}
+function dShrub(x,y){ctx.fillStyle='#4A7C35';ctx.beginPath();ctx.arc(x,y,10,0,Math.PI*2);ctx.fill();ctx.fillStyle='#5A9040';ctx.beginPath();ctx.arc(x+8,y+2,8,0,Math.PI*2);ctx.fill();ctx.beginPath();ctx.arc(x-6,y+2,7,0,Math.PI*2);ctx.fill();}
+function dCloud(x,y,sz){ctx.fillStyle='rgba(255,255,255,.82)';ctx.beginPath();ctx.arc(x,y,sz*.5,0,Math.PI*2);ctx.arc(x+sz*.4,y+sz*.1,sz*.35,0,Math.PI*2);ctx.arc(x-sz*.35,y+sz*.1,sz*.3,0,Math.PI*2);ctx.fill();}
+function startConstruction(){const sec=document.getElementById('houseSec');sec.classList.add('visible');sec.scrollIntoView({behavior:'smooth'});setTimeout(()=>{step=0;if(timer)clearInterval(timer);timer=setInterval(()=>{if(step>total){clearInterval(timer);return;}draw(step);document.getElementById('bpb').style.width=(step/total*100)+'%';for(const st of stages)if(step>=st.a)document.getElementById('bsl').textContent=st.l;step++;},35);},600);}
+function resetAndBuild(){step=0;document.getElementById('bpb').style.width='0%';document.getElementById('bsl').textContent='Preparando terreno...';if(timer)clearInterval(timer);timer=setInterval(()=>{if(step>total){clearInterval(timer);return;}draw(step);document.getElementById('bpb').style.width=(step/total*100)+'%';for(const st of stages)if(step>=st.a)document.getElementById('bsl').textContent=st.l;step++;},35);}
+draw(0);
+</script>
+</body>
+</html>
